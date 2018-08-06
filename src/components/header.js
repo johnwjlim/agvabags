@@ -10,7 +10,7 @@ const Container = styled.div`
 
  const Wrapper = styled.div`
   margin: 0 auto;
-  padding: 0.5rem 3rem;
+  padding: 0.8em 3em;
  `;
 
  const HeaderText = styled.h1`
@@ -19,7 +19,7 @@ const Container = styled.div`
  `;
 
  const ResponsiveWrapper = styled(Headroom)`
-  margin-bottom: 1.5rem; 
+  margin-bottom: 1.5em; 
 
   @media(max-width: 768px) {
     display: none;
