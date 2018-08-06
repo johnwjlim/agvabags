@@ -5,6 +5,8 @@ import { StaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
 
 import Header from './header'
+import MobileHeader from "./mobileHeader"
+
 import './layout.css'
 import './styles.css'
 
@@ -32,6 +34,7 @@ const Layout = ({ children, data }) => (
           <html lang="en" />
         </Helmet>
         <Header siteTitle={data.site.siteMetadata.title}/>
+        <MobileHeader siteTitle={data.site.siteMetadata.title}/>
         <div
           style={{
             margin: '0 auto',
