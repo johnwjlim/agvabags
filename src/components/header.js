@@ -1,33 +1,32 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import styled from 'styled-components'
+
+import Headroom from "react-headroom"
+
+const Container = styled.div`
+  background-color: rebeccapurple; `;
+
+ const Wrapper = styled.div`
+  margin: 0 auto;
+  padding: 0.5rem 3rem;
+ `;
+
+ const HeaderText = styled.h1`
+  margin: 0;
+  color: white;
+ `;
 
 const Header = ({ siteTitle }) => (
-  <div
-    style={{
-      background: 'rebeccapurple',
-      marginBottom: '1.45rem',
-    }}
-  >
-    <div
-      style={{
-        margin: '0 auto',
-        maxWidth: 960,
-        padding: '1.45rem 1.0875rem',
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: 'white',
-            textDecoration: 'none',
-          }}
-        >
-          {siteTitle}
+  <Headroom wrapperStyle={{marginBottom: "1.5rem"}}>
+    <Container>
+      <Wrapper>
+        <Link to ="/" style={{textDecoration: "none"}}>
+          <HeaderText>{siteTitle}</HeaderText>
         </Link>
-      </h1>
-    </div>
-  </div>
+      </Wrapper>
+    </Container>
+  </Headroom>
 )
 
 export default Header
