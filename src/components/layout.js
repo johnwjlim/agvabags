@@ -10,6 +10,11 @@ import MobileHeader from "./mobileHeader"
 import './layout.css'
 import './styles.css'
 
+const ChildrenWrapper = styled.div`
+  margin: 0 auto;
+  padding: 0.5em 1.5em;
+`;
+
 
 const Layout = ({ children, data }) => (
   <StaticQuery
@@ -35,7 +40,7 @@ const Layout = ({ children, data }) => (
         </Helmet>
         <Header siteTitle={data.site.siteMetadata.title}/>
         <MobileHeader siteTitle={data.site.siteMetadata.title}/>
-        <div
+        {/* <div
           style={{
             margin: '0 auto',
             maxWidth: 960,
@@ -44,7 +49,10 @@ const Layout = ({ children, data }) => (
           }}
         >
           {children}
-        </div>
+        </div> */}
+        <ChildrenWrapper>
+          {children}
+        </ChildrenWrapper> 
       </>
     )}
   />

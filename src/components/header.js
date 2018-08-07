@@ -4,27 +4,50 @@ import styled from 'styled-components'
 
 import Headroom from "react-headroom"
 
+const ResponsiveWrapper = styled(Headroom)`
+  margin-bottom: 1.5em; 
+
+  @media(max-width: 768px) {
+    display: none;
+  }
+`;
+
 const Container = styled.div`
   background-color: rebeccapurple; 
 `;
 
  const Wrapper = styled.div`
   margin: 0 auto;
-  padding: 0.8em 3em;
+  padding: 0.5em 1.5em;
+  display: flex;
+  justify-content: space-between;
  `;
 
- const HeaderText = styled.h1`
+ const LogoText = styled.h1`
+  font-size: 1.3em;
   margin: 0;
-  color: white;
  `;
 
- const ResponsiveWrapper = styled(Headroom)`
-  margin-bottom: 1.5em; 
+ const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: white;
 
-  @media(max-width: 768px) {
-    display: none;
+  &:hover {
+    text-decoration: underline;
   }
  `;
+
+ const LinkWrapper = styled.div`
+  // float: right;
+  display: flex;
+ `;
+
+ const LinkText = styled.h5 `
+  font-weight: 600;
+  font-size: 0.9em;
+  margin: auto 0.6em;
+ `;
+
 
 // const Header = ({ siteTitle }) => (
 //   <Headroom wrapperStyle={{marginBottom: "1.5rem"}}>
@@ -48,15 +71,24 @@ export default class Header extends React.Component {
   render() {
     return (
       <ResponsiveWrapper>
-        <Headroom>
-          <Container>
-            <Wrapper>
-              <Link to ="/" style={{textDecoration: "none"}}>
-                <HeaderText>{this.props.siteTitle}</HeaderText>
-              </Link>
-            </Wrapper>
-          </Container>
-        </Headroom>
+        <Container>
+          <Wrapper>
+            <LogoText>
+              <StyledLink to="/">{this.props.siteTitle}</StyledLink> 
+            </LogoText>
+            <LinkWrapper>
+              <LinkText>
+                <StyledLink to="./page-2">UNO</StyledLink>
+              </LinkText>
+              <LinkText>
+                <StyledLink to="./page-2">DOS</StyledLink>
+              </LinkText>
+              <LinkText>
+                <StyledLink to="./page-2">TRES</StyledLink>
+              </LinkText>
+            </LinkWrapper>
+          </Wrapper>
+        </Container>
       </ResponsiveWrapper>
     )
   }
