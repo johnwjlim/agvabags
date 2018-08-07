@@ -16,6 +16,7 @@ const Wrapper = styled.div`
     margin: 0 auto;
     padding: 0.5em 1.5em
     // text-align: center;
+    display: flex;
 `;
 
 const HeaderText = styled.h1`
@@ -33,6 +34,8 @@ const StyledLink = styled(Link)`
     }
 `;
 
+
+
 export default class mobileHeader extends React.Component {
     constructor() {
         super();
@@ -47,6 +50,7 @@ export default class mobileHeader extends React.Component {
                             {this.props.siteTitle}
                         </HeaderText>
                     </Link> */}
+                    <i className="material-icons">menu</i>
                     <HeaderText>
                         <StyledLink tp = "/">
                             {this.props.siteTitle}
