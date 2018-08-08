@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
+import { connect } from 'react-redux'
 
 const Container = styled.header`
     display: none;
@@ -20,7 +21,7 @@ const Wrapper = styled.div`
 `;
 
 const HeaderText = styled.h1`
-    margin: 0;
+    margin: auto 0;
     color: white;
     font-size: 1.2em;
 `;
@@ -34,6 +35,30 @@ const StyledLink = styled(Link)`
     }
 `;
 
+const MenuButton = styled.button`
+    background-color: transparent;
+    margin: auto 0;
+    // margin-top: 0.4em;
+    padding: 0;
+    vertical-align: middle;
+    border: none;
+`;
+
+const mapDispatchToProps = dispatch => {
+    return { toggle: () => {
+        dispatch({ type: `TOGGLE_MENU`}) 
+        console.log("action dispatched!")
+        }
+    }
+}
+
+const Menu = ({ toggle }) => (
+    <MenuButton onClick={toggle}>
+        <i className="material-icons">menu</i>
+    </MenuButton>
+)
+
+const ConnectedMenu = connect(null, mapDispatchToProps)(Menu)
 
 
 export default class mobileHeader extends React.Component {
@@ -50,9 +75,9 @@ export default class mobileHeader extends React.Component {
                             {this.props.siteTitle}
                         </HeaderText>
                     </Link> */}
-                    <i className="material-icons">menu</i>
+                    <ConnectedMenu/>
                     <HeaderText>
-                        <StyledLink tp = "/">
+                        <StyledLink to = "/">
                             {this.props.siteTitle}
                         </StyledLink>
                     </HeaderText>

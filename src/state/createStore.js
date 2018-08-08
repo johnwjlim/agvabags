@@ -17,5 +17,5 @@ const rootReducer = (state = initialState, action) => {
 }
 
 
-const createStore = () => reduxCreateStore(reducer, initialState);
+const createStore = () => reduxCreateStore(rootReducer, initialState);
 export default createStore;
