@@ -3,6 +3,7 @@ import { Link } from 'gatsby'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 
+
 const Container = styled.header`
     display: none;
     background-color: teal;
@@ -36,13 +37,16 @@ const StyledLink = styled(Link)`
 `;
 
 const MenuButton = styled.button`
+    display: inline-block;
     background-color: transparent;
     margin: auto 0;
-    // margin-top: 0.4em;
     padding: 0;
-    vertical-align: middle;
+    // margin-top: 0.45em
+    padding-top: 0.45em;
     border: none;
+    cursor: pointer;
 `;
+
 
 const mapDispatchToProps = dispatch => {
     return { toggle: () => {
@@ -52,16 +56,40 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-const Menu = ({ toggle }) => (
+const mapStateToProps = state => {
+    return { menuState: state.toggleMenu }
+}
+
+const Icon = ({ menuState, toggle }) => (
     <MenuButton onClick={toggle}>
-        <i className="material-icons">menu</i>
+        {
+            !menuState ?
+            <i className="material-icons" style={{color: "white"}}>menu</i> :
+            <i className="material-icons" style={{color: "white"}}>close</i>
+        }
     </MenuButton>
 )
 
-const ConnectedMenu = connect(null, mapDispatchToProps)(Menu)
+// const Title = ({ menuState, toggle, children }) => (
+//     <HeaderText>
+//         {
+//             menuState ?
+//             <Link to = "/" onClick={toggle} style={{textDecoration: "none", color: "white"}}>
+//                 Mobile Title
+//             </Link> :
+//             <Link to = "/" style={{textDecoration: "none", color: "white"}}>
+//                 Mobile Title
+//             </Link>
+//         }
+//     </HeaderText>
+    
+// )
 
+// const ConnectedTitle = connect(mapStateToProps, mapDispatchToProps)(Title)
 
-export default class mobileHeader extends React.Component {
+const ConnectedIcon = connect(mapStateToProps, mapDispatchToProps)(Icon)
+
+class mobileHeader extends React.Component {
     constructor() {
         super();
     }
@@ -70,19 +98,26 @@ export default class mobileHeader extends React.Component {
         return (
             <Container>
                 <Wrapper>
-                    {/* <Link to = "/" style={{textDecoration: "none"}}>
-                        <HeaderText>
-                            {this.props.siteTitle}
-                        </HeaderText>
-                    </Link> */}
-                    <ConnectedMenu/>
+                <ConnectedIcon/>
                     <HeaderText>
-                        <StyledLink to = "/">
-                            {this.props.siteTitle}
-                        </StyledLink>
+                        {
+                            this.props.menuState ?
+                            <Link to = "/" onClick={() => this.props.toggle()} style={{textDecoration: "none", color: "white"}}>
+                                Menu Open
+                                {/* {this.props.siteTitle} */}
+                            </Link> :
+                            <Link to = "/" style={{textDecoration: "none", color: "white"}}>
+                                {/* {this.props.siteTitle} */}
+                                Menu Closed
+                            </Link>
+                        }
                     </HeaderText>
                 </Wrapper>
             </Container>
         )
     }
 }
+
+const connectedHeader = connect(mapStateToProps, mapDispatchToProps)(mobileHeader);
+
+export default connectedHeader;

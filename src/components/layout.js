@@ -19,7 +19,7 @@ const ChildrenWrapper = styled.div`
 
 
 const mapStateToProps = state => {
-  console.log("menu state " + state.toggleMenu)
+  // console.log("menu state " + state.toggleMenu)
   return { menuState: state.toggleMenu }
 }
 
