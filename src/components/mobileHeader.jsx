@@ -53,6 +53,7 @@ const mapDispatchToProps = dispatch => {
         dispatch({ type: `TOGGLE_MENU`}) 
         console.log("action dispatched!")
         }
+
     }
 }
 

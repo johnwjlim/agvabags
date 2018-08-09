@@ -11,6 +11,9 @@ const rootReducer = (state = initialState, action) => {
         case "TOGGLE_MENU": {
             return {...state, toggleMenu: !state.toggleMenu};
         }
+        case "CLOSE_MENU": {
+            return {...state, toggleMenu: false};
+        }
         default: 
             return state;
     }

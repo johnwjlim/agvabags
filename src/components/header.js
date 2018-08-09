@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
+import { connect } from 'react-redux'
 
 import Headroom from "react-headroom"
 
@@ -63,7 +64,15 @@ const Container = styled.div`
 
 // export default Header
 
-export default class Header extends React.Component {
+const mapDispatchToProps = dispatch => {
+  return { close: () => {
+      dispatch({ type: `CLOSE_MENU`}) 
+      // console.log("action dispatched!")
+      }
+  }
+}
+
+class Header extends React.Component {
   constructor() {
     super(); 
   }
@@ -74,7 +83,7 @@ export default class Header extends React.Component {
         <Container>
           <Wrapper>
             <LogoText>
-              <StyledLink to="/">{this.props.siteTitle}</StyledLink> 
+              <StyledLink to="/" onClick={() => this.props.close()}>{this.props.siteTitle}</StyledLink> 
             </LogoText>
             <LinkWrapper>
               <LinkText>
@@ -93,3 +102,7 @@ export default class Header extends React.Component {
     )
   }
 }
+
+const connectedHeader = connect(null, mapDispatchToProps)(Header);
+
+export default connectedHeader
