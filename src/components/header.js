@@ -87,13 +87,13 @@ class Header extends React.Component {
             </LogoText>
             <LinkWrapper>
               <LinkText>
-                <StyledLink to="./page-2">UNO</StyledLink>
+                <StyledLink to="/page-2">products</StyledLink>
               </LinkText>
               <LinkText>
-                <StyledLink to="./page-2">DOS</StyledLink>
+                <StyledLink to="/page-2">products</StyledLink>
               </LinkText>
               <LinkText>
-                <StyledLink to="./page-2">TRES</StyledLink>
+                <StyledLink to="/page-2">products</StyledLink>
               </LinkText>
             </LinkWrapper>
           </Wrapper>

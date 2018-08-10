@@ -8,8 +8,8 @@
 
 const path = require('path')
 
-exports.createPages = ({ graphql, boundActionCreators }) => {
-    const {createPage} = boundActionCreators
+exports.createPages = ({ graphql, actions }) => {
+    const {createPage} = actions
     return new Promise((resolve, reject) =>  {
         const productTemplate = path.resolve('src/templates/product.js')
         resolve(
@@ -30,8 +30,8 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                 }
                 result.data.allContentfulProduct.edges.forEach((edge) => {
                     createPage ({
-                        path: edge.node.slug,
-                        componenet: productTemplate,
+                        path: `/products/${edge.node.slug}`,
+                        component: productTemplate,
                         context: {
                             slug: edge.node.slug
                         }
