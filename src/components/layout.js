@@ -39,6 +39,14 @@ const Layout = ({ children, data, menuState }) => (
             title
           }
         }
+        allContentfulCategory {
+          edges {
+            node {
+              title
+              id
+            }
+          }
+        }
       }
     `}
     render={data => (
@@ -52,7 +60,7 @@ const Layout = ({ children, data, menuState }) => (
         >
           <html lang="en" />
         </Helmet>
-        <Header siteTitle={data.site.siteMetadata.title}/>
+        <Header siteTitle={data.site.siteMetadata.title} edges={data.allContentfulCategory.edges}/>
         <MobileHeader siteTitle={data.site.siteMetadata.title}/>
         {
           menuState ?

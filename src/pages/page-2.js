@@ -32,11 +32,6 @@ export default class SecondPage extends React.Component {
         <p>Product listing demonstration</p>
         <ul>
           {productEdges.map(({node}) => (
-            // <li key={node.id}>
-            //   <Link to = {`/products/${node.slug}`}>
-            //     <p>{node.title}</p>
-            //   </Link>
-            // </li>
             <Listing node={node} key={node.id}></Listing>
           ))}
         </ul>

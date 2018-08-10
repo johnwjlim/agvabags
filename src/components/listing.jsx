@@ -12,7 +12,7 @@ export default class Listing extends React.Component {
         return (
             <li>
                 <Link to={`/products/${this.props.node.slug}/`}>
-                    <p>{this.props.node.title} sample text</p>
+                    <p>{this.props.node.title} {this.props.node.slug}</p>
                 </Link>
             </li>
         )
