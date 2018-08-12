@@ -1,7 +1,9 @@
 import React from 'react'
-import { Link, graphql } from 'gatsby'
+import { Link, graphql, push } from 'gatsby'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
+
+import logo from "../images/agva-logo.svg"
 
 import Headroom from "react-headroom"
 
@@ -14,8 +16,10 @@ const ResponsiveWrapper = styled(Headroom)`
 `;
 
 const Container = styled.div`
-  background-color: rebeccapurple; 
+  // background-color: rebeccapurple; 
+  background-color: white;
   margin-bottom: 1.5em; 
+  
 
   @media(max-width: 768px) {
     display: none;
@@ -29,6 +33,11 @@ const Container = styled.div`
   justify-content: space-between;
  `;
 
+ const Logo = styled.img`
+  margin: 0;
+  max-width: 5.5em;
+ `
+
  const LogoText = styled.h1`
   padding: 0.2em 0;
   font-size: 1.3em;
@@ -37,7 +46,7 @@ const Container = styled.div`
 
  const StyledLink = styled(Link)`
   text-decoration: none;
-  color: white;
+  color: #484848;
 
   &:hover {
     text-decoration: underline;
@@ -51,6 +60,7 @@ const Container = styled.div`
  `;
 
  const LinkText = styled.h5 `
+  // color: #484848;
   height: 100%;
   font-weight: 400;
   font-size: 0.9em;
@@ -104,7 +114,6 @@ const Container = styled.div`
 const mapDispatchToProps = dispatch => {
   return { close: () => {
       dispatch({ type: `CLOSE_MENU`}) 
-      // console.log("action dispatched!")
       }
   }
 }
@@ -114,21 +123,27 @@ class Header extends React.Component {
     super(); 
   }
 
+  handleClick() {
+    this.props.close();
+    push('/');
+  }
+
   render() {
     const categoryEdges = this.props.edges
     return (
       // <ResponsiveWrapper>
         <Container>
           <Wrapper>
-            <LogoText>
+            {/* <LogoText>
               <StyledLink to="/" onClick={() => this.props.close()}>{this.props.siteTitle}</StyledLink> 
-            </LogoText>
+            </LogoText> */}
+            <Logo onClick={() => this.handleClick()} src={logo}></Logo>
             <LinkWrapper>
               <LinkTextDropdown>
                 <StyledLink to="/page-2">Browse by bag</StyledLink>
                 <DropdownContent>  
                   {categoryEdges.map(({node}) => (
-                    <Link to={`/categories/${node.id}`}>
+                    <Link key={node.id} to={`/categories/${node.id}`}>
                       <h4>{node.title}</h4>
                     </Link>
                   ))}

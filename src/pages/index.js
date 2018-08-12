@@ -8,13 +8,13 @@ const HeroText = styled.h1`
   font-family: "Montserrat Bold";
   font-size: 3.5em;
   letter-spacing: -1px;
-  color: rebeccapurple;
+  color: #484848;
 `;
 
 const HeroSubtext = styled.h2`
   font-family: "Montserrat";
   font-size: 1.5em;
-  color: #484848;
+  color: #767676;
 `
 const IndexPage = () => (
   <Layout>

@@ -27,7 +27,7 @@ export default class SecondPage extends React.Component {
     
     return (
       <Layout>
-        <h1>Hello from the second page</h1>
+        <h1>all products are here</h1>
         <p>Welcome to page 2</p>
         <p>Product listing demonstration</p>
         <ul>
