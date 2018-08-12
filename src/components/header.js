@@ -18,7 +18,12 @@ const ResponsiveWrapper = styled(Headroom)`
 const Container = styled.div`
   // background-color: rebeccapurple; 
   background-color: white;
+  margin: 0 auto;
   margin-bottom: 1.5em; 
+  border-bottom: 0.5px solid #767676;
+  // max-width: 960px;
+  padding: 1em 1em;
+
   
 
   @media(max-width: 768px) {
@@ -34,9 +39,15 @@ const Container = styled.div`
  `;
 
  const Logo = styled.img`
-  margin: 0;
+  // display: block;
+  margin: auto 0;
   max-width: 5.5em;
- `
+ `;
+
+ const LogoLink = styled.a`
+  display: flex; 
+  align-items: center;
+ `;
 
  const LogoText = styled.h1`
   padding: 0.2em 0;
@@ -137,7 +148,9 @@ class Header extends React.Component {
             {/* <LogoText>
               <StyledLink to="/" onClick={() => this.props.close()}>{this.props.siteTitle}</StyledLink> 
             </LogoText> */}
-            <Logo onClick={() => this.handleClick()} src={logo}></Logo>
+            <LogoLink onClick={() => this.handleClick()} style={{padding: 0}}>
+              <Logo src={logo}></Logo>
+            </LogoLink>
             <LinkWrapper>
               <LinkTextDropdown>
                 <StyledLink to="/page-2">Browse by bag</StyledLink>
