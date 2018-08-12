@@ -1,7 +1,9 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import { Link, graphql, push } from 'gatsby'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
+
+import logo from "../images/agva-logo.svg"
 
 import Headroom from "react-headroom"
 
@@ -14,24 +16,37 @@ const ResponsiveWrapper = styled(Headroom)`
 `;
 
 const Container = styled.div`
-  background-color: rebeccapurple; 
+  // background-color: rebeccapurple; 
+  background-color: white;
+  margin-bottom: 1.5em; 
+  
+
+  @media(max-width: 768px) {
+    display: none;
+  }
 `;
 
  const Wrapper = styled.div`
   margin: 0 auto;
-  padding: 0.5em 1.5em;
+  padding: 0 1.5em;
   display: flex;
   justify-content: space-between;
  `;
 
+ const Logo = styled.img`
+  margin: 0;
+  max-width: 5.5em;
+ `
+
  const LogoText = styled.h1`
+  padding: 0.2em 0;
   font-size: 1.3em;
   margin: 0;
  `;
 
  const StyledLink = styled(Link)`
   text-decoration: none;
-  color: white;
+  color: #484848;
 
   &:hover {
     text-decoration: underline;
@@ -41,12 +56,44 @@ const Container = styled.div`
  const LinkWrapper = styled.div`
   // float: right;
   display: flex;
+  margin: 0.5em 0;
  `;
 
  const LinkText = styled.h5 `
+  // color: #484848;
+  height: 100%;
   font-weight: 400;
   font-size: 0.9em;
   margin: auto 0.6em;
+ `;
+
+//  const LinkTextDropdown = styled.h5 `
+//   font-weight: 400;
+//   font-size: 0.9em;
+//   margin: auto 0.6em;
+//  `;
+
+ const LinkTextDropdown = LinkText.extend`
+ `
+
+ const Dropdown = styled.div`
+  float: left;
+  margin-top: 3px;
+  overflow: hidden;
+ `;
+
+ const DropdownContent = styled.div`
+  position: absolute;
+  top: 27px;
+  background-color: white;
+  display: none;
+  width: 8.5em;
+  padding: 1.2em 0.5em;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  ${LinkTextDropdown}:hover & {
+    display: block;
+  }
  `;
 
 
@@ -67,7 +114,6 @@ const Container = styled.div`
 const mapDispatchToProps = dispatch => {
   return { close: () => {
       dispatch({ type: `CLOSE_MENU`}) 
-      // console.log("action dispatched!")
       }
   }
 }
@@ -77,28 +123,42 @@ class Header extends React.Component {
     super(); 
   }
 
+  handleClick() {
+    this.props.close();
+    push('/');
+  }
+
   render() {
+    const categoryEdges = this.props.edges
     return (
-      <ResponsiveWrapper>
+      // <ResponsiveWrapper>
         <Container>
           <Wrapper>
-            <LogoText>
+            {/* <LogoText>
               <StyledLink to="/" onClick={() => this.props.close()}>{this.props.siteTitle}</StyledLink> 
-            </LogoText>
+            </LogoText> */}
+            <Logo onClick={() => this.handleClick()} src={logo}></Logo>
             <LinkWrapper>
+              <LinkTextDropdown>
+                <StyledLink to="/page-2">Browse by bag</StyledLink>
+                <DropdownContent>  
+                  {categoryEdges.map(({node}) => (
+                    <Link key={node.id} to={`/categories/${node.id}`}>
+                      <h4>{node.title}</h4>
+                    </Link>
+                  ))}
+                </DropdownContent>
+              </LinkTextDropdown>
               <LinkText>
-                <StyledLink to="./page-2">UNO</StyledLink>
+                <StyledLink to="/page-2">Portfolio</StyledLink>
               </LinkText>
               <LinkText>
-                <StyledLink to="./page-2">DOS</StyledLink>
-              </LinkText>
-              <LinkText>
-                <StyledLink to="./page-2">TRES</StyledLink>
+                <StyledLink to="/page-2">About</StyledLink>
               </LinkText>
             </LinkWrapper>
           </Wrapper>
         </Container>
-      </ResponsiveWrapper>
+      // </ResponsiveWrapper>
     )
   }
 }
@@ -106,3 +166,17 @@ class Header extends React.Component {
 const connectedHeader = connect(null, mapDispatchToProps)(Header);
 
 export default connectedHeader
+
+// export const pageQuery = graphql`
+//   query {
+//     allContentfulCategory {
+//       edges {
+//         node {
+//           title
+//           id
+//         }
+//       }
+//     }
+//   }
+// `
+

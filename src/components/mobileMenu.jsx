@@ -47,17 +47,17 @@ class mobileMenu extends React.Component {
             <nav>
                 <List>
                     <MenuItem onClick={() => this.props.toggle()}>
-                        <StyledLink to = "/">
+                        <StyledLink to = "/page-2">
                             <p>Uno</p>
                         </StyledLink>
                     </MenuItem>
                     <MenuItem onClick={() => this.props.toggle()}>
-                        <StyledLink to = "./page-2"> 
+                        <StyledLink to = "/page-2"> 
                             <p>Dos</p>
                         </StyledLink>
                     </MenuItem>
                     <MenuItem onClick={() => this.props.toggle()}>
-                        <StyledLink to = "./page-2"> 
+                        <StyledLink to = "/page-2"> 
                             <p>Tres</p>
                         </StyledLink>
                     </MenuItem>
