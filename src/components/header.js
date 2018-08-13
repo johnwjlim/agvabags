@@ -20,8 +20,8 @@ const Container = styled.div`
   background-color: white;
   margin: 0 auto;
   margin-bottom: 1.5em; 
-  border-bottom: 0.5px solid #767676;
-  // max-width: 960px;
+  // border-bottom: 0.5px solid #767676;
+  box-shadow: 0 0 px 0.2px 0 #767676;
   padding: 1em 1em;
 
   
@@ -41,12 +41,13 @@ const Container = styled.div`
  const Logo = styled.img`
   // display: block;
   margin: auto 0;
-  max-width: 5.5em;
+  max-width: 5.8em;
  `;
 
  const LogoLink = styled.a`
   display: flex; 
   align-items: center;
+  cursor: pointer;
  `;
 
  const LogoText = styled.h1`
@@ -179,17 +180,4 @@ class Header extends React.Component {
 const connectedHeader = connect(null, mapDispatchToProps)(Header);
 
 export default connectedHeader
-
-// export const pageQuery = graphql`
-//   query {
-//     allContentfulCategory {
-//       edges {
-//         node {
-//           title
-//           id
-//         }
-//       }
-//     }
-//   }
-// `
 
