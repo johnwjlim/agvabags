@@ -16,13 +16,13 @@ const ResponsiveWrapper = styled(Headroom)`
 `;
 
 const Container = styled.div`
-  // background-color: rebeccapurple; 
   background-color: white;
+  // max-width: 1024px; 
   margin: 0 auto;
-  margin-bottom: 1.5em; 
-  // border-bottom: 0.5px solid #767676;
-  box-shadow: 0 0 px 0.2px 0 #767676;
-  padding: 1em 1em;
+  margin-bottom: 1em; 
+  border-bottom: 1px solid #dddddd;
+  // box-shadow: 0 0px 0.2px 0 #767676;
+  padding: 1.5em 1.8em;
 
   
 
