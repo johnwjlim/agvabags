@@ -30,7 +30,7 @@ const HeaderWrapper = styled.div`
     text-align: center
 `
 
-const HeaderText = styled.h4`
+const HeaderText = styled.h1`
     font-family: "Montserrat Medium";
     font-size: 1.8rem;
     margin: 0.5em auto;
@@ -98,7 +98,6 @@ const CardSubText = CardText.extend`
 const Button = styled.button`
     position: absolute;
     left: 34%;
-    // z-index: -1;
     font-family: "Open Sans Light", "sans serif";
     font-size: 0.7rem;
     padding: 0.3em 1.2em;
@@ -117,6 +116,7 @@ const Button = styled.button`
         position: relative;
         display: inline;
         left: 0;
+        margin-bottom: 0;
     }
 
     ${Card}:hover & {
@@ -140,7 +140,6 @@ export default class CategoryTemplate extends React.Component {
     }
 
     handlePush(link, evt) {
-        // evt.stopPropogation();
         console.log("handle parent click");
         push(link);
     }
