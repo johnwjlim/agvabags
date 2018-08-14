@@ -20,7 +20,7 @@ import Listing from '../components/listing'
 //     }
 // `
 const Container = styled.div `
-    max-width: 1024px;
+    max-width: 1200px;
     margin: 0 auto;
 `;
 
@@ -47,7 +47,7 @@ const HeaderSubText = styled.h5`
 `
 
 const GridWrapper = styled.div`
-    // max-width: 1024px;
+    // max-width: 1200px;
     margin: 0 auto;
     // text-align: center;
     display: grid;
@@ -101,12 +101,12 @@ const Button = styled.button`
     font-family: "Open Sans Light", "sans serif";
     font-size: 0.7rem;
     padding: 0.3em 1.2em;
-    color: #484848;
+    color: #009688;
     background-color: white;
     cursor: pointer;
     border-radius: 3px;
     border-width: 0.5px;  
-    border-color: #767676;
+    border-color: #009688;
     // margin: 1em;
     margin: 0.5em; 
     margin-bottom: 2em;
@@ -121,8 +121,8 @@ const Button = styled.button`
 
     ${Card}:hover & {
         display: inline; 
-        color: #484848;
-        border-color: #767676;
+        color: #009688;
+        border-color: #009688;
         transition: 0.3s
 
         &:hover {

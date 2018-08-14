@@ -25,12 +25,62 @@ const ProductInfo = styled.div`
     padding: 1.5em 0;
 `;
 
+const ProductTitleWrapper = styled.div`
+    border-bottom: solid 1px #dddddd;
+`;
+
 const ProductTitle = styled.h1`
     font-family: "Montserrat Medium";
     font-size: 1.8rem;
-`
+`;
+
+const ProductSKU = styled.h4`
+    font-family: "Montserrat Light";
+    font-color: #767676;
+`;
+
+const ProductDescription = styled.div`
+`;
+
+const Button = styled.button`
+    font-family: "Montserrat Medium", "sans serif";
+    letter-spacing: 0px;
+    font-size: 0.7rem;
+    padding: 0.8em 2em;
+    color: #009688;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 3px;
+    border-width: 0.5px;  
+    border-color: #009688;
+    margin: 0.1em;  
+    margin-bottom: 2em;
+
+    &:hover {
+        background-color: #EE3124;
+        color: white;
+        transition: 0.2s;
+        border-color: #EE3124;
+    }
+`;
+const ProductContentWrapper = styled.div`
+    margin 1.5em 0;
+`;
+
+const MicroText = styled.h6`
+    font-family: "Montserrat", "sans serif";
+    font-size: 0.55rem;
+    color: #767676;
+    margin-bottom: 1.5em;
+`;
 
 export default class ProductTemplate extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            imageIndex: 0
+        }
+    }
     render() {
         // const product = this.props.data.
         const product = this.props.data.contentfulProduct;
@@ -51,9 +101,15 @@ export default class ProductTemplate extends React.Component {
                             <div dangerouslySetInnerHTML={{__html: product.description.childMarkdownRemark.html}}/>
                         </div> */}
                         <ProductInfo>
-                            <ProductTitle>{product.title}</ProductTitle>
-                            <p>{product.sku}</p>
-                            <div className="descriptionText" dangerouslySetInnerHTML={{__html: product.description.childMarkdownRemark.html}}/>
+                            <ProductTitleWrapper>
+                                <ProductTitle>{product.title}</ProductTitle>
+                                <ProductSKU>{product.sku}</ProductSKU>
+                                <Button>ADD TO ENQUIRY</Button>
+                            </ProductTitleWrapper>
+                            <ProductContentWrapper>
+                                <MicroText>DESCRIPTION</MicroText>
+                                <ProductDescription className="descriptionText" dangerouslySetInnerHTML={{__html: product.description.childMarkdownRemark.html}}/>
+                            </ProductContentWrapper>
                         </ProductInfo>
                     </Content>
                 </Container>
