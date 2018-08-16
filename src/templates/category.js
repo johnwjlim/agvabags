@@ -151,6 +151,9 @@ export default class CategoryTemplate extends React.Component {
 
     render() {
         const category = this.props.data.contentfulCategory;
+        const productEdges = this.props.data.allContentfulProduct.edges;
+        console.log(productEdges);
+        console.log(category.product);
         return (
             <Layout>
                 <Container>
@@ -164,21 +167,21 @@ export default class CategoryTemplate extends React.Component {
                         ))}
                     </ul> */}
                     <GridWrapper>
-                        {category.product.map((node) => (
-                            <Card onClick={() => this.handlePush(`/products/${node.slug}`)} key={node.id} node={node}>
-                                <CardImageWrapper>
-                                    {
-                                        node.thumbnail ?
-                                        <Img fluid={node.thumbnail.fluid} alt={node.thumbnail.title}/> :
-                                        <p>theres nothing here</p>
-                                    }
-                                </CardImageWrapper>
-                                <CardTextWrapper>
-                                    <CardText>{node.title}</CardText>
-                                    <CardSubText>SKU: {node.sku}</CardSubText>
-                                </CardTextWrapper>
-                                <Button onClick={(e) => this.handleChildClick(e)}>+ Quick Add</Button>
-                            </Card>
+                        {productEdges.map(({node}) => (
+                        <Card onClick={() => this.handlePush(`/products/${node.slug}`)} node={node}>
+                            <CardImageWrapper>
+                                {
+                                    node.thumbnail ?
+                                    <Img fluid={node.thumbnail.fluid} alt={node.thumbnail.title}/> :
+                                    <p>theres nothing here</p>
+                                }
+                            </CardImageWrapper>
+                            <CardTextWrapper>
+                                <CardText>{node.title}</CardText>
+                                <CardSubText>SKU: {node.sku}</CardSubText>
+                            </CardTextWrapper>
+                            <Button onClick={(e) => this.handleChildClick(e)}>+ Quick Add</Button>
+                        </Card>
                         ))}
                     </GridWrapper>
                 </Container>
@@ -203,6 +206,24 @@ export const pageQuery = graphql`
                         ...GatsbyContentfulFluid
                     }
                 }
+            }
+
+        }
+        allContentfulProduct (
+            filter: {category: {id: {eq: $id}}}
+            sort: {fields: [title], order: ASC}
+          ) {
+            edges {
+              node {
+                title
+                slug
+                sku
+                thumbnail {
+                    fluid(maxHeight: 800) {
+                        ...GatsbyContentfulFluid
+                    }
+                }
+              }
             }
         }
     }

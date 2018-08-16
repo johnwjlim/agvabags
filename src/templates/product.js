@@ -7,6 +7,7 @@ import Img from 'gatsby-image'
 
 
 import Layout from '../components/layout'
+import ProductImages from '../components/productImages'
 
 const Container = styled.div`
     padding: 0 2em;
@@ -31,11 +32,13 @@ const ProductTitleWrapper = styled.div`
 
 const ProductTitle = styled.h1`
     font-family: "Montserrat Medium";
-    font-size: 1.8rem;
+    font-size: 1.5rem;
+    margin-bottom: 0.5em;
 `;
 
 const ProductSKU = styled.h4`
-    font-family: "Montserrat Light";
+    font-size: 0.75rem;
+    font-family: "Open Sans Light";
     font-color: #767676;
 `;
 
@@ -46,21 +49,23 @@ const Button = styled.button`
     font-family: "Montserrat Medium", "sans serif";
     letter-spacing: 0px;
     font-size: 0.7rem;
-    padding: 0.8em 2em;
-    color: #009688;
-    background-color: white;
+    padding: 0.8em 5em;
+    // color: #009688;
+    color: white
+    background-color: #484848;
     cursor: pointer;
-    border-radius: 3px;
+    border-radius: 5px;
     border-width: 0.5px;  
-    border-color: #009688;
+    // border-color: #009688;
     margin: 0.1em;  
     margin-bottom: 2em;
 
     &:hover {
-        background-color: #EE3124;
+        // background-color: #EE3124;
+        background-color: #767676;
         color: white;
         transition: 0.2s;
-        border-color: #EE3124;
+        // border-color: #EE3124;
     }
 `;
 const ProductContentWrapper = styled.div`
@@ -91,7 +96,7 @@ export default class ProductTemplate extends React.Component {
                         <div>
                             {
                                 product.images ?
-                                <Img fluid={product.images[0].fluid} alt={product.images[0].title}/> :
+                                <ProductImages images={product.images}/> :
                                 <p>no image available</p>
                             }
                         </div>
@@ -103,7 +108,8 @@ export default class ProductTemplate extends React.Component {
                         <ProductInfo>
                             <ProductTitleWrapper>
                                 <ProductTitle>{product.title}</ProductTitle>
-                                <ProductSKU>{product.sku}</ProductSKU>
+                                <ProductSKU>Product Code: {product.sku}</ProductSKU>
+                                {/* <ProductSKU>$49.90</ProductSKU> */}
                                 <Button>ADD TO ENQUIRY</Button>
                             </ProductTitleWrapper>
                             <ProductContentWrapper>
