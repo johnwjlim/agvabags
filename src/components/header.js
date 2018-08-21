@@ -8,7 +8,7 @@ import logo from "../images/agva-logo.svg"
 import Headroom from "react-headroom"
 
 const ResponsiveWrapper = styled(Headroom)`
-  margin-bottom: 1.5em; 
+  margin-bottom: 1em; 
 
   @media(max-width: 768px) {
     display: none;
@@ -16,15 +16,13 @@ const ResponsiveWrapper = styled(Headroom)`
 `;
 
 const Container = styled.div`
-  background-color: white;
+  background-color: #fefefe;
   // max-width: 1024px; 
-  margin: 0 auto;
+  // margin: 1.5em 1.8em;
   margin-bottom: 1em; 
   border-bottom: 1px solid #dddddd;
   // box-shadow: 0 0px 0.2px 0 #767676;
-  padding: 1.5em 1.8em;
-
-  
+  padding: 0 2em;
 
   @media(max-width: 768px) {
     display: none;
@@ -32,8 +30,8 @@ const Container = styled.div`
 `;
 
  const Wrapper = styled.div`
-  margin: 0 auto;
-  padding: 0 1.5em;
+  // margin: 0 1.5em;
+  padding: 0 0.45em;
   display: flex;
   justify-content: space-between;
  `;
@@ -41,7 +39,7 @@ const Container = styled.div`
  const Logo = styled.img`
   // display: block;
   margin: auto 0;
-  max-width: 5.8em;
+  max-width: 5.1em;
  `;
 
  const LogoLink = styled.a`
@@ -52,13 +50,15 @@ const Container = styled.div`
 
  const LogoText = styled.h1`
   padding: 0.2em 0;
-  font-size: 1.3em;
+  // font-size: 1.2em;
   margin: 0;
  `;
 
  const StyledLink = styled(Link)`
   text-decoration: none;
-  color: #484848;
+  // padding: 1.5em 0;
+  // color: #484848;
+  color: #4f4f4f;
 
   &:hover {
     text-decoration: underline;
@@ -66,17 +66,17 @@ const Container = styled.div`
  `;
 
  const LinkWrapper = styled.div`
+  // flex: 1; 
   // float: right;
   display: flex;
-  margin: 0.5em 0;
  `;
 
  const LinkText = styled.h5 `
-  // color: #484848;
   height: 100%;
-  font-weight: 400;
-  font-size: 0.9em;
+  font-family: "Montserrat Light";
+  font-size: 15px;
   margin: auto 0.6em;
+  padding: 1.7em 0;
  `;
 
 //  const LinkTextDropdown = styled.h5 `
@@ -102,6 +102,7 @@ const Container = styled.div`
   width: 8.5em;
   padding: 1.2em 0.5em;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  z-index: 2;
 
   ${LinkTextDropdown}:hover & {
     display: block;
@@ -141,7 +142,8 @@ class Header extends React.Component {
   }
 
   render() {
-    const categoryEdges = this.props.edges
+    const categoryEdges = this.props.edges;
+    // console.log(categoryEdges);
     return (
       // <ResponsiveWrapper>
         <Container>
@@ -168,6 +170,14 @@ class Header extends React.Component {
               </LinkText>
               <LinkText>
                 <StyledLink to="/page-2">About</StyledLink>
+              </LinkText>
+            </LinkWrapper>
+            <LinkWrapper>
+              <LinkText>
+                <StyledLink to="/page-2">Catalog</StyledLink>
+              </LinkText>
+              <LinkText> 
+                  <StyledLink to="/page-2">Cart</StyledLink>
               </LinkText>
             </LinkWrapper>
           </Wrapper>
