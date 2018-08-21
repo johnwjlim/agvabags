@@ -22,7 +22,7 @@ const Container = styled.div`
   margin-bottom: 1em; 
   border-bottom: 1px solid #dddddd;
   // box-shadow: 0 0px 0.2px 0 #767676;
-  padding: 0 2em;
+  padding: 0 2.5em;
 
   @media(max-width: 768px) {
     display: none;
@@ -89,25 +89,36 @@ const Container = styled.div`
  `
 
  const Dropdown = styled.div`
-  float: left;
+  // float: left;
   margin-top: 3px;
   overflow: hidden;
+  // text-align: center;
  `;
 
  const DropdownContent = styled.div`
   position: absolute;
-  top: 27px;
-  background-color: white;
+  text-align: center;
+  top: 67px;
+  left: 0;
+  background-color: #fefefe;
   display: none;
-  width: 8.5em;
+  width: 100%;
   padding: 1.2em 0.5em;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+  border: solid 1px #dddddd;
   z-index: 2;
+  
 
   ${LinkTextDropdown}:hover & {
-    display: block;
+    // margin: 0 auto;
+    display: flex;
+    justify-content: center;
   }
  `;
+
+ const DropdownLinkWrapper = styled.div`
+  margin: 0.5em 2em;
+ `
 
 
 // const Header = ({ siteTitle }) => (
@@ -156,12 +167,14 @@ class Header extends React.Component {
             </LogoLink>
             <LinkWrapper>
               <LinkTextDropdown>
-                <StyledLink to="/page-2">Browse by bag</StyledLink>
+                <StyledLink>Browse</StyledLink>
                 <DropdownContent>  
                   {categoryEdges.map(({node}) => (
+                    <DropdownLinkWrapper>
                     <Link key={node.id} to={`/categories/${node.id}`}>
                       <h4>{node.title}</h4>
                     </Link>
+                    </DropdownLinkWrapper>
                   ))}
                 </DropdownContent>
               </LinkTextDropdown>
