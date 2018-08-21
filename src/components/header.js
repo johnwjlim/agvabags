@@ -8,7 +8,7 @@ import logo from "../images/agva-logo.svg"
 import Headroom from "react-headroom"
 
 const ResponsiveWrapper = styled(Headroom)`
-  margin-bottom: 1.5em; 
+  margin-bottom: 1em; 
 
   @media(max-width: 768px) {
     display: none;
@@ -16,16 +16,13 @@ const ResponsiveWrapper = styled(Headroom)`
 `;
 
 const Container = styled.div`
-  background-color: white;
+  background-color: #fefefe;
   // max-width: 1024px; 
   // margin: 1.5em 1.8em;
   margin-bottom: 1em; 
   border-bottom: 1px solid #dddddd;
   // box-shadow: 0 0px 0.2px 0 #767676;
-  padding: 0 1.8em;
-
-
-  
+  padding: 0 2em;
 
   @media(max-width: 768px) {
     display: none;
@@ -42,7 +39,7 @@ const Container = styled.div`
  const Logo = styled.img`
   // display: block;
   margin: auto 0;
-  max-width: 5.8em;
+  max-width: 5.1em;
  `;
 
  const LogoLink = styled.a`
@@ -53,15 +50,15 @@ const Container = styled.div`
 
  const LogoText = styled.h1`
   padding: 0.2em 0;
-  font-size: 1.3em;
+  // font-size: 1.2em;
   margin: 0;
  `;
 
  const StyledLink = styled(Link)`
   text-decoration: none;
   // padding: 1.5em 0;
-  color: #484848;
-  // color: #767676;
+  // color: #484848;
+  color: #4f4f4f;
 
   &:hover {
     text-decoration: underline;
@@ -75,14 +72,11 @@ const Container = styled.div`
  `;
 
  const LinkText = styled.h5 `
-  // color: #767676;
   height: 100%;
-  // font-weight: 400;
   font-family: "Montserrat Light";
-  // letter-spacing: -0.1px;
-  font-size: 0.9rem;
+  font-size: 15px;
   margin: auto 0.6em;
-  padding: 1.8em 0;
+  padding: 1.7em 0;
  `;
 
 //  const LinkTextDropdown = styled.h5 `
