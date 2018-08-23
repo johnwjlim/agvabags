@@ -120,26 +120,15 @@ const Container = styled.div`
   margin: 0.5em 2em;
  `
 
-
-// const Header = ({ siteTitle }) => (
-//   <Headroom wrapperStyle={{marginBottom: "1.5rem"}}>
-//     <Container>
-//       <Wrapper>
-//         <Link to ="/" style={{textDecoration: "none"}}>
-//           <HeaderText>{siteTitle}</HeaderText>
-//         </Link>
-//       </Wrapper>
-//     </Container>
-//   </Headroom>
-// )
-
-// export default Header
-
 const mapDispatchToProps = dispatch => {
-  return { close: () => {
-      dispatch({ type: `CLOSE_MENU`}) 
-      }
+  return { close: () => 
+      dispatch({ type: `CLOSE_MENU`}),
+
   }
+}
+
+const mapStateToProps = state => {
+  return { cart: state.cart }
 }
 
 class Header extends React.Component {
@@ -190,7 +179,7 @@ class Header extends React.Component {
                 <StyledLink to="/page-2">Catalog</StyledLink>
               </LinkText>
               <LinkText> 
-                  <StyledLink to="/page-2">Cart</StyledLink>
+                <StyledLink>Cart: {this.props.cart.length}</StyledLink>
               </LinkText>
             </LinkWrapper>
           </Wrapper>
@@ -200,7 +189,7 @@ class Header extends React.Component {
   }
 }
 
-const connectedHeader = connect(null, mapDispatchToProps)(Header);
+const connectedHeader = connect(mapStateToProps, mapDispatchToProps)(Header);
 
 export default connectedHeader
 

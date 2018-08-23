@@ -14,6 +14,12 @@ const rootReducer = (state = initialState, action) => {
         case "CLOSE_MENU": {
             return {...state, toggleMenu: false};
         }
+        case "ADD_CART": {
+            return {...state, cart: [...state.cart, action.payload]};
+        }
+        case "REMOVE_CART": {
+            return {...state, cart: {...state.cart.slice(0, action.payload), ...state.cart.slice(action.payload + 1)}};
+        }
         default: 
             return state;
     }
