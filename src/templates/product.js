@@ -77,7 +77,7 @@ const Button = styled.button`
     }
 `;
 const ProductContentWrapper = styled.div`
-    margin 1.5em 0;
+    margin 1.38em 0;
     border-bottom: solid 1px #dddddd;
 `;
 
@@ -108,7 +108,7 @@ const ConsumerWrapper = styled.div`
     padding: 4em 2em;
     text-align: center;
     max-width: 1024px;
-    margin: 1em auto;
+    margin: 0em auto;
 `;
 
 const ConsumerButton = Button.extend`
