@@ -126,14 +126,26 @@ const ConsumerText = styled.h6`
 
 `;
 
+const mapDispatchToProps = dispatch => {
+    return {
+        addCart: (product) => dispatch({ type: "ADD_CART", payload: product })
+    }
+}
 
-export default class ProductTemplate extends React.Component {
+
+class ProductTemplate extends React.Component {
     constructor() {
         super();
         this.state = {
             imageIndex: 0
         }
     }
+
+    handleAdd(evt, product) {
+        evt.preventDefault();
+        this.props.addCart(product);
+    }
+
     render() {
         // const product = this.props.data.
         const product = this.props.data.contentfulProduct;
@@ -158,10 +170,10 @@ export default class ProductTemplate extends React.Component {
                                 <ProductTitle>{product.title}</ProductTitle>
                                 <SubtitleWrapper>
                                     <ProductSKU>Product Code: {product.sku}</ProductSKU>
-                                    <ProductSKU>Lead time: about 3 months</ProductSKU>
+                                    <ProductSKU>Lead Time: about 3 months</ProductSKU>
                                 </SubtitleWrapper>
                                 {/* <ProductDescription className="descriptionText" dangerouslySetInnerHTML={{__html: product.description.childMarkdownRemark.html}}/> */}
-                                <Button>ADD TO ENQUIRY</Button>
+                                <Button onClick={(product) => this.handleAdd(product)}>ADD TO ENQUIRY</Button>
                             </ProductTitleWrapper>
                             {/* <ProductContentWrapper>
                                 <MicroText>FEATURES</MicroText>
@@ -190,6 +202,7 @@ export default class ProductTemplate extends React.Component {
                         <TextWrapper>
                             <ConsumerText>Like what you see but looking for an individual piece?</ConsumerText>
                             <ConsumerText>Check out this product on our consumer site.</ConsumerText>
+                            {/* <ConsumerText>Like what you see but looking for an individual piece?Check out this product on our consumer site. </ConsumerText> */}
                         </TextWrapper>
                         <ConsumerButton>Shop product</ConsumerButton>
                     </ConsumerWrapper>
@@ -198,6 +211,9 @@ export default class ProductTemplate extends React.Component {
         )
     }
 }
+
+const connectedProductTemplate = connect(null, mapDispatchToProps)(ProductTemplate);
+export default connectedProductTemplate;
 
 export const pageQuery = graphql`
     query productQuery($slug: String!) {

@@ -25,9 +25,10 @@ const Container = styled.div `
 `;
 
 const HeaderWrapper = styled.div`
-    padding-bottom: 1.2em;
-    border-bottom: solid 1px #dddddd;
-    text-align: center
+    padding-bottom: 0em;
+    padding-left: 2em;
+    // border-bottom: solid 1px #dddddd;
+    // text-align: center
 `
 
 const HeaderText = styled.h1`
@@ -35,7 +36,7 @@ const HeaderText = styled.h1`
     font-size: 1.8rem;
     margin: 0.5em auto;
     // text-align: center;
-    // padding-bottom: 1.2em;
+    padding-bottom: 0em;
     // border-bottom: solid 1px #dddddd;
 `
 
@@ -43,7 +44,7 @@ const HeaderSubText = styled.h5`
    font-family: "Montserrat Light";
    font-size: 0.9rem;
    color: #767676;
-   margin: 1em auto;
+   margin: 0.5em auto;
 `
 
 const GridWrapper = styled.div`
@@ -83,7 +84,7 @@ const CardText = styled.p`
     text-align: center;
     font-family: "Open Sans";
     color: #484848;
-    // font-weight: 600;
+    font-weight: 500;
     font-size: 0.9rem;
     // padding: 1em 0;
     margin: 0 auto;
