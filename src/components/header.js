@@ -74,7 +74,7 @@ const Container = styled.div`
  const LinkText = styled.h5 `
   height: 100%;
   font-family: "Montserrat Light";
-  font-size: 15px;
+  font-size: 14px;
   margin: auto 0.6em;
   padding: 1.7em 0;
  `;

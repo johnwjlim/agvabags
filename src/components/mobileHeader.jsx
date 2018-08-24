@@ -16,7 +16,7 @@ const Container = styled.header`
 
 const Wrapper = styled.div`
     margin: 0 auto;
-    padding: 0.5em 1.5em
+    padding: 0.5em 1.5em;
     // text-align: center;
     display: flex;
 `;

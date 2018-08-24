@@ -10,6 +10,8 @@ import Layout from '../components/layout'
 import ProductImages from '../components/productImages'
 
 const Container = styled.div`
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 0 2em;
 `;
 
@@ -32,22 +34,26 @@ const ProductTitleWrapper = styled.div`
 
 const ProductTitle = styled.h1`
     font-family: "Montserrat Medium";
-    font-size: 1.5rem;
-    margin-bottom: 0.5em;
+    font-size: 1.63rem;
+    // margin-top: 0.2em;
+    margin-bottom: 0.45em;
+
+    @media (max-width: 768px) {
+        font-size: 1.45rem;
+    }
 `;
 
 const ProductSKU = styled.h4`
-    font-size: 0.75rem;
-    font-family: "Open Sans Light";
-    font-color: #767676;
+    font-size: 0.67rem;
+    font-family: "Montserrat Light";
+    color: #767676;
     // margin: 0;
-    margin-bottom: 0.6em;
+    margin-bottom: 0.5em;
 `;
 
 const SubtitleWrapper = styled.div`
-    margin-top: 1.2em;
-    margin-bottom: 1.2em;
-    margin: 1.2em 0;
+    margin-top: 0;
+    margin-bottom: 2em;
 `;
 
 const ProductDescription = styled.div`
@@ -57,16 +63,16 @@ const Button = styled.button`
     font-family: "Montserrat Medium", "sans serif";
     letter-spacing: 0px;
     font-size: 0.7rem;
+    // letter-spacing: -0.1px;
     padding: 0.8em 5em;
-    // color: #009688;
     color: white;
     background-color: #484848;
     cursor: pointer;
-    border-radius: 5px;
-    border-width: 0.5px;  
-    // border-color: #009688;
-    margin: 0.1em;  
-    margin-bottom: 2em;
+    // border-radius: 5px;
+    // border-width: 0.5px;  
+    margin: 0;  
+    // margin-top: 0em;
+    margin-bottom: 2.3em;
 
     &:hover {
         // background-color: #EE3124;
@@ -76,14 +82,16 @@ const Button = styled.button`
         // border-color: #EE3124;
     }
 `;
+
 const ProductContentWrapper = styled.div`
-    margin 1.38em 0;
+    margin: 0.8em 0;
+    padding: 0.8em 0;
     border-bottom: solid 1px #dddddd;
 `;
 
 const MicroText = styled.h6`
     font-family: "Montserrat", "sans serif";
-    font-size: 0.55rem;
+    font-size: 0.5rem;
     color: #767676;
     margin-bottom: 1.5em;
 `;
@@ -113,6 +121,8 @@ const ConsumerWrapper = styled.div`
 
 const ConsumerButton = Button.extend`
     margin: 0;
+    border-radius: 5px;
+    border-width: 0.8px;
 `;
 
 const TextWrapper = styled.div`

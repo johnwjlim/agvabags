@@ -46,6 +46,7 @@ const Thumbnail = ActiveThumbnail.extend`
 
 
 const ImageWrapper = styled.div` 
+    padding: 0 1.2em;
     @media (max-width: 768px) {
         grid-row: 1;
     }
