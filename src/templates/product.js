@@ -59,7 +59,7 @@ const Button = styled.button`
     font-size: 0.7rem;
     padding: 0.8em 5em;
     // color: #009688;
-    color: white
+    color: white;
     background-color: #484848;
     cursor: pointer;
     border-radius: 5px;
@@ -202,7 +202,6 @@ class ProductTemplate extends React.Component {
                         <TextWrapper>
                             <ConsumerText>Like what you see but looking for an individual piece?</ConsumerText>
                             <ConsumerText>Check out this product on our consumer site.</ConsumerText>
-                            {/* <ConsumerText>Like what you see but looking for an individual piece?Check out this product on our consumer site. </ConsumerText> */}
                         </TextWrapper>
                         <ConsumerButton>Shop product</ConsumerButton>
                     </ConsumerWrapper>
