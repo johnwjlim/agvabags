@@ -7,6 +7,7 @@ import Img from 'gatsby-image'
 
 const Container = styled.div`
     display: grid;
+    padding: 1em;
     grid-template-columns: 20% 80%;
 
     @media (max-width: 768px) {
@@ -17,6 +18,7 @@ const Container = styled.div`
 
 const ThumbnailWrapper = styled.div`
     // margin: 2em 0;
+    padding: 1em 0;
     @media (max-width: 768px) {
         grid-row: 2;
         display: flex;
@@ -46,7 +48,7 @@ const Thumbnail = ActiveThumbnail.extend`
 
 
 const ImageWrapper = styled.div` 
-    padding: 0 1.2em;
+    padding: 0 1em;
     @media (max-width: 768px) {
         grid-row: 1;
     }

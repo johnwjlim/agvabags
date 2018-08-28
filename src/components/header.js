@@ -24,6 +24,10 @@ const Container = styled.div`
   // box-shadow: 0 0px 0.2px 0 #767676;
   padding: 0 2.5em;
 
+  z-index: 2;
+  position: sticky;
+  top: 0;
+
   @media(max-width: 768px) {
     display: none;
   }
@@ -76,7 +80,8 @@ const Container = styled.div`
   font-family: "Montserrat Light";
   font-size: 14px;
   margin: auto 0.6em;
-  padding: 1.7em 0;
+  padding: 2em 0;
+  padding-bottom: 2.3em;
  `;
 
 //  const LinkTextDropdown = styled.h5 `
@@ -98,7 +103,7 @@ const Container = styled.div`
  const DropdownContent = styled.div`
   position: absolute;
   text-align: center;
-  top: 67px;
+  top: 64px;
   left: 0;
   background-color: #fefefe;
   display: none;

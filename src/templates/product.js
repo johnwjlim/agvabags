@@ -12,12 +12,12 @@ import ProductImages from '../components/productImages'
 const Container = styled.div`
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 2em;
+    padding: 0.5em;
 `;
 
 const Content = styled.div`
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 0.58fr 0.42fr;
 
     @media(max-width: 768px) {
         display: block;
@@ -25,7 +25,7 @@ const Content = styled.div`
 `;
 
 const ProductInfo = styled.div`
-    padding: 1.5em 0;
+    padding: 1.7em 2em;
 `;
 
 const ProductTitleWrapper = styled.div`
@@ -33,10 +33,11 @@ const ProductTitleWrapper = styled.div`
 `;
 
 const ProductTitle = styled.h1`
-    font-family: "Montserrat Medium";
-    font-size: 1.63rem;
+    font-family: "Montserrat Light";
+    font-size: 1.5rem;
+    // font-weight: 400;
     // margin-top: 0.2em;
-    margin-bottom: 0.45em;
+    margin-bottom: 0.5em;
 
     @media (max-width: 768px) {
         font-size: 1.45rem;
@@ -53,7 +54,7 @@ const ProductSKU = styled.h4`
 
 const SubtitleWrapper = styled.div`
     margin-top: 0;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
 `;
 
 const ProductDescription = styled.div`
@@ -62,9 +63,9 @@ const ProductDescription = styled.div`
 const Button = styled.button`
     font-family: "Montserrat Medium", "sans serif";
     letter-spacing: 0px;
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     // letter-spacing: -0.1px;
-    padding: 0.8em 5em;
+    padding: 1em 5em;
     color: white;
     background-color: #484848;
     cursor: pointer;
@@ -121,6 +122,7 @@ const ConsumerWrapper = styled.div`
 
 const ConsumerButton = Button.extend`
     margin: 0;
+    padding: 1em 5em;
     border-radius: 5px;
     border-width: 0.8px;
 `;
