@@ -62,7 +62,8 @@ const Container = styled.div`
   text-decoration: none;
   // padding: 1.5em 0;
   // color: #484848;
-  color: #4f4f4f;
+  // color: #4f4f4f;
+  color: #767676;
 
   &:hover {
     text-decoration: underline;
@@ -77,11 +78,12 @@ const Container = styled.div`
 
  const LinkText = styled.h5 `
   height: 100%;
-  font-family: "Montserrat Light";
+  font-family: "Montserrat";
+  font-weight: 500;
   font-size: 14px;
   margin: auto 0.6em;
-  padding: 2em 0;
-  padding-bottom: 2.3em;
+  padding: 2.1em 0;
+  // padding-bottom: 2.3em;
  `;
 
 //  const LinkTextDropdown = styled.h5 `

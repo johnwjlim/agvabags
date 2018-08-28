@@ -15,7 +15,11 @@ const rootReducer = (state = initialState, action) => {
             return {...state, toggleMenu: false};
         }
         case "ADD_CART": {
-            return {...state, cart: [...state.cart, action.payload]};
+            if (state.cart.includes(action.payload)) {
+                return state;
+            } else {
+                return {...state, cart: [...state.cart, action.payload]};
+            }
         }
         case "REMOVE_CART": {
             return {...state, cart: {...state.cart.slice(0, action.payload), ...state.cart.slice(action.payload + 1)}};

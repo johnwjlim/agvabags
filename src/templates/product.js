@@ -33,9 +33,9 @@ const ProductTitleWrapper = styled.div`
 `;
 
 const ProductTitle = styled.h1`
-    font-family: "Montserrat Light";
-    font-size: 1.5rem;
-    // font-weight: 400;
+    font-family: "Montserrat";
+    font-size: 1.42rem;
+    font-weight: 500;
     // margin-top: 0.2em;
     margin-bottom: 0.5em;
 
@@ -73,7 +73,7 @@ const Button = styled.button`
     // border-width: 0.5px;  
     margin: 0;  
     // margin-top: 0em;
-    margin-bottom: 2.3em;
+    margin-bottom: 4em;
 
     &:hover {
         // background-color: #EE3124;
