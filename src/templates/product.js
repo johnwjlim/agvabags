@@ -149,13 +149,18 @@ class ProductTemplate extends React.Component {
     constructor() {
         super();
         this.state = {
-            imageIndex: 0
+            imageIndex: 0,
+            // product: this.props.data.contentfulProduct
         }
     }
 
-    handleAdd(evt, product) {
-        evt.preventDefault();
+    handleAdd(product) {
+        // evt.preventDefault();    
+        console.log("button clicked")
+        console.log(product);
         this.props.addCart(product);
+        // console.log(this.state.product);
+        // console.log(product);
     }
 
     render() {
@@ -185,7 +190,7 @@ class ProductTemplate extends React.Component {
                                     <ProductSKU>Lead Time: about 3 months</ProductSKU>
                                 </SubtitleWrapper>
                                 {/* <ProductDescription className="descriptionText" dangerouslySetInnerHTML={{__html: product.description.childMarkdownRemark.html}}/> */}
-                                <Button onClick={(product) => this.handleAdd(product)}>ADD TO ENQUIRY</Button>
+                                <Button onClick={() => this.handleAdd(product)}>ADD TO ENQUIRY</Button>
                             </ProductTitleWrapper>
                             {/* <ProductContentWrapper>
                                 <MicroText>FEATURES</MicroText>
