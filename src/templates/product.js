@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 
-
 import Layout from '../components/layout'
 import ProductImages from '../components/productImages'
 
@@ -155,12 +154,8 @@ class ProductTemplate extends React.Component {
     }
 
     handleAdd(product) {
-        // evt.preventDefault();    
-        console.log("button clicked")
         console.log(product);
         this.props.addCart(product);
-        // console.log(this.state.product);
-        // console.log(product);
     }
 
     render() {
@@ -245,6 +240,11 @@ export const pageQuery = graphql`
             }
             images {
                 fluid(maxWidth: 800) {
+                    ...GatsbyContentfulFluid
+                }
+            }
+            thumbnail {
+                fluid(maxHeight: 800) {
                     ...GatsbyContentfulFluid
                 }
             }

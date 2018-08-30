@@ -186,7 +186,7 @@ class Header extends React.Component {
                 <StyledLink to="/page-2">Catalog</StyledLink>
               </LinkText>
               <LinkText> 
-                <StyledLink>Cart: {this.props.cart.length}</StyledLink>
+                <StyledLink to="/cart">Cart: {this.props.cart.length}</StyledLink>
               </LinkText>
             </LinkWrapper>
           </Wrapper>
@@ -198,5 +198,5 @@ class Header extends React.Component {
 
 const connectedHeader = connect(mapStateToProps, mapDispatchToProps)(Header);
 
-export default connectedHeader
+export default connectedHeader;
 
