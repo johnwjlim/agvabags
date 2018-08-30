@@ -34,7 +34,7 @@ const ProductTitleWrapper = styled.div`
 const ProductTitle = styled.h1`
     font-family: "Montserrat";
     font-size: 1.42rem;
-    font-weight: 500;
+    // font-weight: 500;
     // margin-top: 0.2em;
     margin-bottom: 0.5em;
 
@@ -81,6 +81,17 @@ const Button = styled.button`
         transition: 0.2s;
         // border-color: #EE3124;
     }
+`;
+
+const DisabledButton = styled.button`
+    background-color: transparent;
+    color: #484848;
+    font-family: "Montserrat Medium", "sans serif";
+    font-size: 0.6rem;
+    padding: 1em 5em;
+    margin: 0;
+    margin-bottom: 4em;
+
 `;
 
 const ProductContentWrapper = styled.div`
@@ -137,6 +148,10 @@ const ConsumerText = styled.h6`
 
 `;
 
+const mapStateToProps = state => {
+    return { cart: state.cart }
+}
+
 const mapDispatchToProps = dispatch => {
     return {
         addCart: (product) => dispatch({ type: "ADD_CART", payload: product })
@@ -154,7 +169,6 @@ class ProductTemplate extends React.Component {
     }
 
     handleAdd(product) {
-        console.log(product);
         this.props.addCart(product);
     }
 
@@ -185,7 +199,12 @@ class ProductTemplate extends React.Component {
                                     <ProductSKU>Lead Time: about 3 months</ProductSKU>
                                 </SubtitleWrapper>
                                 {/* <ProductDescription className="descriptionText" dangerouslySetInnerHTML={{__html: product.description.childMarkdownRemark.html}}/> */}
-                                <Button onClick={() => this.handleAdd(product)}>ADD TO ENQUIRY</Button>
+                                {
+                                    this.props.cart.includes(product) ?
+                                        <DisabledButton>ALREADY IN CART</DisabledButton> 
+                                    : <Button onClick={() => this.handleAdd(product)}>ADD TO ENQUIRY</Button>
+                                }
+                                {/* <Button onClick={() => this.handleAdd(product)}>ADD TO ENQUIRY</Button> */}
                             </ProductTitleWrapper>
                             {/* <ProductContentWrapper>
                                 <MicroText>FEATURES</MicroText>
@@ -223,7 +242,7 @@ class ProductTemplate extends React.Component {
     }
 }
 
-const connectedProductTemplate = connect(null, mapDispatchToProps)(ProductTemplate);
+const connectedProductTemplate = connect(mapStateToProps, mapDispatchToProps)(ProductTemplate);
 export default connectedProductTemplate;
 
 export const pageQuery = graphql`

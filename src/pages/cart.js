@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, push } from 'gatsby'
+import { Link, push, navigate } from 'gatsby'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { graphql } from 'gatsby'
@@ -29,14 +29,16 @@ const MicroTextWrapper = styled.div`
 
 const MicroText = styled.h6`
     font-family: "Montserrat", "sans serif";
-    font-size: 10px;
+    font-size: 12px;
     color: #767676;
-    margin-bottom: 1.5em;
+    margin-bottom: 1.2em;
     width: 50%;
 `;
 
 const List = styled.ul`
     margin: 0;
+    overflow: scroll;
+    height: 450px;
 `;
 
 const Listing = styled.li`
@@ -59,12 +61,38 @@ const ImageWrapper = styled.div`
     width: 25%;
 `;
 
-const ProductTitle = styled.p`
+const ProductTitle = styled.a`
     margin-left: 2.5em;
 `;
 
+const Button = styled.button`
+    font-family: "Montserrat Medium", "sans serif";
+    letter-spacing: 0px;
+    font-size: 0.8rem;
+    color: #767676;
+    background-color: white;
+    cursor: pointer; 
+    margin: 0;  
+    border-color: white;
+    border-radius: 5px;
+
+    &:hover {
+        background-color: #5e5e5e;
+        color: white;
+        transition: 0.2s;
+    }
+`;
+
+
 const mapStateToProps = state => {
     return {cart: state.cart}
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        removeCart: (index) => dispatch({ type: `REMOVE_CART`, payload: index }),
+        resetCart: () => dispatch({ type: `RESET_CART` })
+    }
 }
 
 class Cart extends React.Component {
@@ -72,8 +100,14 @@ class Cart extends React.Component {
         super();
     }
 
-    handlePush(link) {
+    handleNavigate(link) {
         console.log("link clicked!");
+        navigate(link);
+    }
+
+    handleRemove(index) {
+        console.log(index);
+        this.props.removeCart(index);
     }
 
     render() {
@@ -99,13 +133,14 @@ class Cart extends React.Component {
                                                     <ImageWrapper>
                                                         <Img fluid={node.thumbnail.fluid} alt={node.thumbnail.title}/>
                                                     </ImageWrapper>
-                                                    <ProductTitle>{node.title}</ProductTitle>
+                                                    <ProductTitle onClick={() => this.handleNavigate(`/products/${node.slug}`) }>{node.title}</ProductTitle>
                                                 </ProductGroup>
                                             </ListingSection>
                                             <ListingSection>
-                                                <ProductGroup>
+                                                <ProductGroup style={{justifyContent: "space-between"}}>
                                                     {node.sku}
-                                                </ProductGroup>
+                                                    <Button onClick={() => this.handleRemove(edges.indexOf(node))}>X</Button>
+                                                </ProductGroup>  
                                             </ListingSection>
                                         </Listing>
                                     ))
@@ -120,6 +155,6 @@ class Cart extends React.Component {
     }
 }
 
-const connectedCart = connect(mapStateToProps)(Cart);
+const connectedCart = connect(mapStateToProps, mapDispatchToProps)(Cart);
 
 export default connectedCart;

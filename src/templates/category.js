@@ -3,7 +3,7 @@ import { Link } from 'gatsby'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { graphql } from 'gatsby'
-import { push } from 'gatsby'
+import { push, navigate } from 'gatsby'
 import Img from 'gatsby-image'
 
 
@@ -142,7 +142,7 @@ export default class CategoryTemplate extends React.Component {
 
     handlePush(link, evt) {
         console.log("handle parent click");
-        push(link);
+        navigate(link);
     }
 
     handleChildClick(e) {

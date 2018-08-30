@@ -5,7 +5,7 @@ const initialState = {
     cart: []
 }
 
-
+// Reducer must return a new object. Do not mutate. 
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
         case "TOGGLE_MENU": {
@@ -22,7 +22,10 @@ const rootReducer = (state = initialState, action) => {
             }
         }
         case "REMOVE_CART": {
-            return {...state, cart: {...state.cart.slice(0, action.payload), ...state.cart.slice(action.payload + 1)}};
+            return {...state, cart: [...state.cart.slice(0, action.payload), ...state.cart.slice(action.payload + 1)]};
+        }
+        case "RESET_CART": {
+            return {...state, cart: []};
         }
         default: 
             return state;
