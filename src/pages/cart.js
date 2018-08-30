@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import { Link, push } from 'gatsby'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { graphql } from 'gatsby'
@@ -10,12 +10,12 @@ import Layout from '../components/layout'
 const Container = styled.div`
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0.5em;
+    padding: 1em 1.5em;
 `;
 
 const Title = styled.h1`
     font-family: "Montserrat Medium";
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     margin-bottom: 1.2em;
 `;
 
@@ -29,7 +29,7 @@ const MicroTextWrapper = styled.div`
 
 const MicroText = styled.h6`
     font-family: "Montserrat", "sans serif";
-    font-size: 0.5rem;
+    font-size: 10px;
     color: #767676;
     margin-bottom: 1.5em;
     width: 50%;
@@ -56,7 +56,7 @@ const ProductGroup = styled.div`
 `;
 
 const ImageWrapper = styled.div`
-    width: 23%;
+    width: 25%;
 `;
 
 const ProductTitle = styled.p`
@@ -70,6 +70,10 @@ const mapStateToProps = state => {
 class Cart extends React.Component {
     constructor() {
         super();
+    }
+
+    handlePush(link) {
+        console.log("link clicked!");
     }
 
     render() {

@@ -33,7 +33,7 @@ const HeaderWrapper = styled.div`
 
 const HeaderText = styled.h1`
     font-family: "Montserrat Medium";
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     margin: 0.5em auto;
     // text-align: center;
     padding-bottom: 0em;

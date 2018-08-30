@@ -44,7 +44,7 @@ const ProductTitle = styled.h1`
 `;
 
 const ProductSKU = styled.h4`
-    font-size: 0.67rem;
+    font-size: 12px;
     font-family: "Montserrat Light";
     color: #767676;
     // margin: 0;
@@ -91,7 +91,7 @@ const ProductContentWrapper = styled.div`
 
 const MicroText = styled.h6`
     font-family: "Montserrat", "sans serif";
-    font-size: 0.5rem;
+    font-size: 9px;
     color: #767676;
     margin-bottom: 1.5em;
 `;
@@ -233,6 +233,7 @@ export const pageQuery = graphql`
             sku
             dimensions
             materials
+            slug
             description {
                 childMarkdownRemark {
                     html
