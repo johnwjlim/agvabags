@@ -63,6 +63,7 @@ const ImageWrapper = styled.div`
 
 const ProductTitle = styled.a`
     margin-left: 2.5em;
+    cursor: pointer;
 `;
 
 const Button = styled.button`

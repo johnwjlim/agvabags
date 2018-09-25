@@ -201,7 +201,7 @@ class ProductTemplate extends React.Component {
                                 {/* <ProductDescription className="descriptionText" dangerouslySetInnerHTML={{__html: product.description.childMarkdownRemark.html}}/> */}
                                 {
                                     this.props.cart.includes(product) ?
-                                        <DisabledButton>ALREADY IN CART</DisabledButton> 
+                                        <DisabledButton>ITEM IN ENQUIRY</DisabledButton> 
                                     : <Button onClick={() => this.handleAdd(product)}>ADD TO ENQUIRY</Button>
                                 }
                                 {/* <Button onClick={() => this.handleAdd(product)}>ADD TO ENQUIRY</Button> */}
@@ -234,7 +234,11 @@ class ProductTemplate extends React.Component {
                             <ConsumerText>Like what you see but looking for an individual piece?</ConsumerText>
                             <ConsumerText>Check out this product on our consumer site.</ConsumerText>
                         </TextWrapper>
-                        <ConsumerButton>Shop product</ConsumerButton>
+                        <a href={product.shopifyLink}>
+                            <ConsumerButton>
+                                Shop product
+                            </ConsumerButton>
+                        </a>
                     </ConsumerWrapper>
                 </Container>
             </Layout>
@@ -268,6 +272,7 @@ export const pageQuery = graphql`
                     ...GatsbyContentfulFluid
                 }
             }
+            shopifyLink
         }
     }
 `

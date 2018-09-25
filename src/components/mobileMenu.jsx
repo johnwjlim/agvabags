@@ -26,6 +26,16 @@ const StyledLink = styled(Link)`
     // }
 `;
 
+const CategoryList = styled.ul`
+    margin: 0;
+    margin-left: 2.5em;
+    padding-bottom: 1em;
+
+`;
+
+const CategoryItem = styled.li`
+    list-style-type: none;
+`;
 
 const mapDispatchToProps = dispatch => {
     return { toggle: () => {
@@ -43,22 +53,50 @@ class mobileMenu extends React.Component {
 
 
     render() {
-        return(
+        const categoryEdges = this.props.categories;
+        const occasionEdges = this.props.occasions;
+        return (
             <nav>
                 <List>
+                    <MenuItem style={{borderColor: "white"}} >
+                        <p style={{color: "#969696", marginBottom: "1em"}}>Browse by bag</p>
+                        <CategoryList>
+                            {categoryEdges.map(({node}) => (
+                                <CategoryItem>
+                                    <StyledLink style={{fontSize: "12px"}} to={`categories/${node.slug}`} 
+                                    onClick={() => this.props.toggle()}>
+                                        {node.title}
+                                    </StyledLink>
+                                </CategoryItem>
+                            ))}
+                        </CategoryList>
+                    </MenuItem>
+                    <MenuItem >
+                        <p style={{color: "#969696", marginBottom: "1em"}}>Browse by occasion</p>
+                        <CategoryList>
+                            {occasionEdges.map(({node}) => (
+                                <CategoryItem>
+                                    <StyledLink style={{fontSize: "12px"}} to={`occasion/${node.slug}`} 
+                                    onClick={() => this.props.toggle()}>
+                                        {node.title}
+                                    </StyledLink>
+                                </CategoryItem>
+                            ))}
+                        </CategoryList>
+                    </MenuItem>
                     <MenuItem onClick={() => this.props.toggle()}>
-                        <StyledLink to = "/page-2">
-                            <p>Uno</p>
+                        <StyledLink to = "/page-2"> 
+                            <p>About</p>
                         </StyledLink>
                     </MenuItem>
                     <MenuItem onClick={() => this.props.toggle()}>
                         <StyledLink to = "/page-2"> 
-                            <p>Dos</p>
+                            <p>FAQ</p>
                         </StyledLink>
                     </MenuItem>
                     <MenuItem onClick={() => this.props.toggle()}>
                         <StyledLink to = "/page-2"> 
-                            <p>Tres</p>
+                            <p>Catalog</p>
                         </StyledLink>
                     </MenuItem>
                 </List>

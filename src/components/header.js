@@ -19,7 +19,7 @@ const Container = styled.div`
   background-color: #fefefe;
   // max-width: 1024px; 
   // margin: 1.5em 1.8em;
-  margin-bottom: 1em; 
+  // margin-bottom: 1em; 
   border-bottom: 1px solid #dddddd;
   // box-shadow: 0 0px 0.2px 0 #767676;
   padding: 0 2.5em;
@@ -70,6 +70,11 @@ const Container = styled.div`
   }
  `;
 
+ const DisabledLink = styled.h5`
+  color: #767676;
+  margin: 0;
+ `
+
  const LinkWrapper = styled.div`
   // flex: 1; 
   // float: right;
@@ -93,6 +98,8 @@ const Container = styled.div`
 //  `;
 
  const LinkTextDropdown = LinkText.extend`
+  color: #767676;
+  cursor: pointer;
  `
 
  const Dropdown = styled.div`
@@ -104,7 +111,7 @@ const Container = styled.div`
 
  const DropdownContent = styled.div`
   position: absolute;
-  text-align: center;
+  // text-align: center;
   top: 64px;
   left: 0;
   background-color: #fefefe;
@@ -115,17 +122,39 @@ const Container = styled.div`
   border: solid 1px #dddddd;
   z-index: 2;
   
-
   ${LinkTextDropdown}:hover & {
     // margin: 0 auto;
-    display: flex;
+    display: block;
     justify-content: center;
   }
  `;
 
+ const DropdownFlexbox = styled.div`
+  display: flex;
+  justify-content: center;
+ `;
+
+ const FlexboxWrapper = styled.div`
+  margin: 0 2.3em;
+  margin-bottom: 1em;
+ `;
+
  const DropdownLinkWrapper = styled.div`
-  margin: 0.5em 2em;
- `
+  margin: 1em 0;
+ `;
+ 
+ const DropdownTitle = styled.h6`
+  margin-top: 1em;
+  margin-bottom: 1.5em; 
+  font-weight: 400;
+  font-size: 14px;
+ `;
+
+ const DropdownLinkText = styled.h5`
+  font-weight: 400;
+  font-size: 14px;
+  margin: 0.5em 0;
+ `;
 
 const mapDispatchToProps = dispatch => {
   return { close: () => 
@@ -149,7 +178,8 @@ class Header extends React.Component {
   }
 
   render() {
-    const categoryEdges = this.props.edges;
+    const categoryEdges = this.props.categories;
+    const occasionEdges = this.props.occasions;
     // console.log(categoryEdges);
     return (
       // <ResponsiveWrapper>
@@ -163,22 +193,40 @@ class Header extends React.Component {
             </LogoLink>
             <LinkWrapper>
               <LinkTextDropdown>
-                <StyledLink>Browse</StyledLink>
+                Browse
                 <DropdownContent>  
-                  {categoryEdges.map(({node}) => (
-                    <DropdownLinkWrapper>
-                    <Link key={node.id} to={`/categories/${node.id}`}>
-                      <h4>{node.title}</h4>
-                    </Link>
-                    </DropdownLinkWrapper>
-                  ))}
+                  <DropdownFlexbox>
+                    <FlexboxWrapper>
+                      <DropdownTitle>Browse by bag</DropdownTitle>
+                      {categoryEdges.map(({node}) => (
+                        <DropdownLinkWrapper>
+                          <DropdownLinkText key={node.id}>
+                            <StyledLink style={{color: "#969696"}} to={`/categories/${node.slug}`}>{node.title}</StyledLink>
+                          </DropdownLinkText>
+                        </DropdownLinkWrapper>
+                      ))}
+                    </FlexboxWrapper>
+                    <FlexboxWrapper>
+                      <DropdownTitle>Browse by Occasion</DropdownTitle>
+                      {occasionEdges.map(({node}) => (
+                        <DropdownLinkWrapper>
+                          <DropdownLinkText key={node.id}>
+                            <StyledLink style={{color: "#969696"}} to={`/occasions/${node.slug}`}>{node.title}</StyledLink>
+                          </DropdownLinkText>
+                        </DropdownLinkWrapper>
+                      ))}
+                    </FlexboxWrapper>
+                  </DropdownFlexbox>
                 </DropdownContent>
               </LinkTextDropdown>
-              <LinkText>
+              {/* <LinkText>
                 <StyledLink to="/page-2">Portfolio</StyledLink>
-              </LinkText>
+              </LinkText> */}
               <LinkText>
                 <StyledLink to="/page-2">About</StyledLink>
+              </LinkText>
+              <LinkText>
+                <StyledLink to="/page-2">FAQ</StyledLink>
               </LinkText>
             </LinkWrapper>
             <LinkWrapper>
@@ -186,7 +234,7 @@ class Header extends React.Component {
                 <StyledLink to="/page-2">Catalog</StyledLink>
               </LinkText>
               <LinkText> 
-                <StyledLink to="/cart">Cart: {this.props.cart.length}</StyledLink>
+                <StyledLink to="/cart">Enquiry: {this.props.cart.length}</StyledLink>
               </LinkText>
             </LinkWrapper>
           </Wrapper>

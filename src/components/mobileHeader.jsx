@@ -1,12 +1,14 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import { Link, graphql, navigate } from 'gatsby'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
+
+import logo from "../images/agva-logo.svg"
 
 
 const Container = styled.header`
     display: none;
-    background-color: teal;
+    background-color: white;
     margin-bottom: 1.5em;
 
     @media (max-width: 768px) {
@@ -19,6 +21,7 @@ const Wrapper = styled.div`
     padding: 0.5em 1.5em;
     // text-align: center;
     display: flex;
+    justify-content: space-between;
 `;
 
 const HeaderText = styled.h1`
@@ -27,14 +30,14 @@ const HeaderText = styled.h1`
     font-size: 1.2em;
 `;
 
-const StyledLink = styled(Link)`
-    text-decoration: none;
-    color: white;
+// const StyledLink = styled(Link)`
+//     text-decoration: none;
+//     color: white;
 
-    &:hover {
-        text-decoration: underline;
-    }
-`;
+//     &:hover {
+//         text-decoration: underline;
+//     }
+// `;
 
 const MenuButton = styled.button`
     display: inline-block;
@@ -47,6 +50,33 @@ const MenuButton = styled.button`
     cursor: pointer;
 `;
 
+const Logo = styled.img`
+    // display: block;
+    margin: auto 0;
+    max-width: 5.1em;
+`;
+
+const LinkText = styled.h5`
+    height: 100%;
+    font-family: "Montserrat";
+    font-weight: 500;
+    font-size: 14px;
+    margin: auto 0.6em;
+    padding: 2.1em 0;
+    // padding-bottom: 2.3em;
+`;
+
+const StyledLink = styled(Link)`
+    text-decoration: none;
+    // padding: 1.5em 0;
+    // color: #484848;
+    // color: #4f4f4f;
+    color: #767676;
+
+    &:hover {
+    text-decoration: underline;
+    }
+`;
 
 const mapDispatchToProps = dispatch => {
     return { toggle: () => {
@@ -58,15 +88,15 @@ const mapDispatchToProps = dispatch => {
 }
 
 const mapStateToProps = state => {
-    return { menuState: state.toggleMenu }
+    return { menuState: state.toggleMenu, cart: state.cart }
 }
 
 const Icon = ({ menuState, toggle }) => (
     <MenuButton onClick={toggle}>
         {
             !menuState ?
-            <i className="material-icons" style={{color: "white"}}>menu</i> :
-            <i className="material-icons" style={{color: "white"}}>close</i>
+            <i className="material-icons" style={{color: "#484848"}}>menu</i> :
+            <i className="material-icons" style={{color: "#484848"}}>close</i>
         }
     </MenuButton>
 )
@@ -104,15 +134,22 @@ class mobileHeader extends React.Component {
                         {
                             this.props.menuState ?
                             <Link to = "/" onClick={() => this.props.toggle()} style={{textDecoration: "none", color: "white"}}>
-                                Menu Open
+                                <Logo src={logo}></Logo>
                                 {/* {this.props.siteTitle} */}
                             </Link> :
                             <Link to = "/" style={{textDecoration: "none", color: "white"}}>
                                 {/* {this.props.siteTitle} */}
-                                Menu Closed
+                                <Logo src={logo}></Logo>
                             </Link>
                         }
                     </HeaderText>
+                    <LinkText> 
+                        {
+                            this.props.menuState ? 
+                            <StyledLink to="/cart" onClick={() => this.props.toggle()}>Enquiry: {this.props.cart.length}</StyledLink> :
+                            <StyledLink to="/cart">Enquiry: {this.props.cart.length}</StyledLink>
+                        }
+                    </LinkText>
                 </Wrapper>
             </Container>
         )
