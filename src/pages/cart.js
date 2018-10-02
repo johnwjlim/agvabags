@@ -262,7 +262,7 @@ class Cart extends React.Component {
                                 }
                             </List> 
                             <Form>
-                                <form method="POST" netlify>
+                                <form name="Enquiry" method="POST" data-netlify="true">
                                     <FormSection>
                                         <InputGroup>
                                             <Label>Your Name</Label>
