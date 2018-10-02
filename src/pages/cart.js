@@ -262,9 +262,11 @@ class Cart extends React.Component {
                                 }
                             </List> 
                             <Form>
-                                <form name="Enquiry" method="POST" data-netlify="true">
+                                <form name="enquiry" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+                                    <input type="hidden" name="form-name" value="enquiry"/>
                                     <FormSection>
                                         <InputGroup>
+                                            <input name="bot-field" type="hidden"/>
                                             <Label>Your Name</Label>
                                             <NameInput/>
                                             <Label>Email</Label>
