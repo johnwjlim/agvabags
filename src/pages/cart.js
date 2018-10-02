@@ -316,9 +316,16 @@ class Cart extends React.Component {
                         <p>cart is empty</p>
                     }
                     <Form>
-                        <form name="enquiry" method="POST" data-netlify="true" onSubmit={this.handleSubmit} >
+                        <form name="enquiry" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={this.handleSubmit}>
                             <input type="hidden" name="form-name" value="enquiry"/>
-                        {/* <form onSubmit={this.handleSubmit}> */}
+
+                            <p hidden>
+                                <label>
+                                    Don’t fill this out:{" "}
+                                    <input name="bot-field" onChange={this.handleChange} />
+                                </label>
+                            </p>
+                            {/* <form onSubmit={this.handleSubmit}> */}
                             <FormSection>
                                 <InputGroup>
                                     {/* <input name="bot-field" type="hidden"/> */}
