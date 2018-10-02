@@ -260,23 +260,25 @@ class Cart extends React.Component {
                                 }
                             </List> 
                             <Form>
-                                <FormSection>
-                                    <InputGroup>
-                                        <Label>Your Name</Label>
-                                        <NameInput/>
-                                        <Label>Email</Label>
-                                        <EmailInput/>
-                                        <Label>Company</Label>
-                                        <CompanyInput/>
-                                    </InputGroup>
-                                    <InputGroup>
-                                        <Label>Comments</Label>
-                                        <TextArea/>
-                                    </InputGroup>
-                                </FormSection>
-                                <FormSection>
-                                    <SubmitButton>Submit</SubmitButton>
-                                </FormSection>
+                                <form method="POST" netlify>
+                                    <FormSection>
+                                        <InputGroup>
+                                            <Label>Your Name</Label>
+                                            <NameInput/>
+                                            <Label>Email</Label>
+                                            <EmailInput/>
+                                            <Label>Company</Label>
+                                            <CompanyInput/>
+                                        </InputGroup>
+                                        <InputGroup>
+                                            <Label>Comments</Label>
+                                            <TextArea/>
+                                        </InputGroup>
+                                    </FormSection>
+                                    <FormSection>
+                                        <SubmitButton>Submit</SubmitButton>
+                                    </FormSection>
+                                </form>
                             </Form>
                         </Content> :
                         <p>cart is empty</p>
