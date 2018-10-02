@@ -311,7 +311,7 @@ class Cart extends React.Component {
                         <p>cart is empty</p>
                     }
                     <Form>
-                        <form name="enquiry" method="post" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={this.handleSubmit}>
+                        <form name="enquiry" method="post" netlify="true" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={this.handleSubmit}>
                             <input type="hidden" name="form-name" value="enquiry"/>
                             <p hidden>
                                 <label>
