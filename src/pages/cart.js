@@ -246,7 +246,7 @@ class Cart extends React.Component {
         fetch("/", {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: encode({ "form-name": "contact", ...this.state })
+          body: encode({ "form-name": "enquiry", ...this.state })
         })
           .then(() => alert("Success!"))
           .catch(error => alert(error));
@@ -291,9 +291,9 @@ class Cart extends React.Component {
                                 }
                             </List> 
                             <Form>
-                                {/* <form name="enquiry" method="POST" data-netlify="true"> */}
-                                    {/* <input type="hidden" name="form-name" value="enquiry"/> */}
-                                <form onSubmit={this.handleSubmit}>
+                                <form onSubmit={this.handleSubmit} name="enquiry" method="POST" data-netlify="true">
+                                    <input type="hidden" name="form-name" value="enquiry"/>
+                                {/* <form onSubmit={this.handleSubmit}> */}
                                     <FormSection>
                                         <InputGroup>
                                             {/* <input name="bot-field" type="hidden"/> */}
