@@ -179,7 +179,9 @@ const TextArea = styled.textarea.attrs({
 
 `;
 
-const SubmitButton = styled.button`
+const SubmitButton = styled.button.attrs({
+    type: "submit"
+})`
     font-family: "Montserrat", "sans serif";
     font-size: 13px;    
     color: white;
