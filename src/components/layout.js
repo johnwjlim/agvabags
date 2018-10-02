@@ -14,7 +14,7 @@ import './styles.css'
 
 const ChildrenWrapper = styled.div`
   margin: 0 auto;
-  padding: 0.5em 1.5em;
+  // padding: 0.5em 1.5em;
 `;
 
 
@@ -44,6 +44,16 @@ const Layout = ({ children, data, menuState }) => (
             node {
               title
               id
+              slug
+            }
+          }
+        }
+        allContentfulOccasion {
+          edges {
+            node {
+              title
+              id
+              slug
             }
           }
         }
@@ -60,11 +70,11 @@ const Layout = ({ children, data, menuState }) => (
         >
           <html lang="en" />
         </Helmet>
-        <Header siteTitle={data.site.siteMetadata.title} edges={data.allContentfulCategory.edges}/>
+        <Header siteTitle={data.site.siteMetadata.title} categories={data.allContentfulCategory.edges} occasions={data.allContentfulOccasion.edges}/>
         <MobileHeader siteTitle={data.site.siteMetadata.title}/>
         {
           menuState ?
-          <MobileMenu/> :
+          <MobileMenu categories={data.allContentfulCategory.edges} occasions={data.allContentfulOccasion.edges}/> :
           <ChildrenWrapper>
             {children}
           </ChildrenWrapper> 

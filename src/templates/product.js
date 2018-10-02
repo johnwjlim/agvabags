@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 
-
 import Layout from '../components/layout'
 import ProductImages from '../components/productImages'
 
@@ -35,7 +34,7 @@ const ProductTitleWrapper = styled.div`
 const ProductTitle = styled.h1`
     font-family: "Montserrat";
     font-size: 1.42rem;
-    font-weight: 500;
+    // font-weight: 500;
     // margin-top: 0.2em;
     margin-bottom: 0.5em;
 
@@ -45,7 +44,7 @@ const ProductTitle = styled.h1`
 `;
 
 const ProductSKU = styled.h4`
-    font-size: 0.67rem;
+    font-size: 12px;
     font-family: "Montserrat Light";
     color: #767676;
     // margin: 0;
@@ -84,6 +83,17 @@ const Button = styled.button`
     }
 `;
 
+const DisabledButton = styled.button`
+    background-color: transparent;
+    color: #484848;
+    font-family: "Montserrat Medium", "sans serif";
+    font-size: 0.6rem;
+    padding: 1em 5em;
+    margin: 0;
+    margin-bottom: 4em;
+
+`;
+
 const ProductContentWrapper = styled.div`
     margin: 0.8em 0;
     padding: 0.8em 0;
@@ -92,7 +102,7 @@ const ProductContentWrapper = styled.div`
 
 const MicroText = styled.h6`
     font-family: "Montserrat", "sans serif";
-    font-size: 0.5rem;
+    font-size: 9px;
     color: #767676;
     margin-bottom: 1.5em;
 `;
@@ -138,6 +148,10 @@ const ConsumerText = styled.h6`
 
 `;
 
+const mapStateToProps = state => {
+    return { cart: state.cart }
+}
+
 const mapDispatchToProps = dispatch => {
     return {
         addCart: (product) => dispatch({ type: "ADD_CART", payload: product })
@@ -149,12 +163,12 @@ class ProductTemplate extends React.Component {
     constructor() {
         super();
         this.state = {
-            imageIndex: 0
+            imageIndex: 0,
+            // product: this.props.data.contentfulProduct
         }
     }
 
-    handleAdd(evt, product) {
-        evt.preventDefault();
+    handleAdd(product) {
         this.props.addCart(product);
     }
 
@@ -185,7 +199,12 @@ class ProductTemplate extends React.Component {
                                     <ProductSKU>Lead Time: about 3 months</ProductSKU>
                                 </SubtitleWrapper>
                                 {/* <ProductDescription className="descriptionText" dangerouslySetInnerHTML={{__html: product.description.childMarkdownRemark.html}}/> */}
-                                <Button onClick={(product) => this.handleAdd(product)}>ADD TO ENQUIRY</Button>
+                                {
+                                    this.props.cart.includes(product) ?
+                                        <DisabledButton>ITEM IN ENQUIRY</DisabledButton> 
+                                    : <Button onClick={() => this.handleAdd(product)}>ADD TO ENQUIRY</Button>
+                                }
+                                {/* <Button onClick={() => this.handleAdd(product)}>ADD TO ENQUIRY</Button> */}
                             </ProductTitleWrapper>
                             {/* <ProductContentWrapper>
                                 <MicroText>FEATURES</MicroText>
@@ -215,7 +234,11 @@ class ProductTemplate extends React.Component {
                             <ConsumerText>Like what you see but looking for an individual piece?</ConsumerText>
                             <ConsumerText>Check out this product on our consumer site.</ConsumerText>
                         </TextWrapper>
-                        <ConsumerButton>Shop product</ConsumerButton>
+                        <a href={product.shopifyLink}>
+                            <ConsumerButton>
+                                Shop product
+                            </ConsumerButton>
+                        </a>
                     </ConsumerWrapper>
                 </Container>
             </Layout>
@@ -223,7 +246,7 @@ class ProductTemplate extends React.Component {
     }
 }
 
-const connectedProductTemplate = connect(null, mapDispatchToProps)(ProductTemplate);
+const connectedProductTemplate = connect(mapStateToProps, mapDispatchToProps)(ProductTemplate);
 export default connectedProductTemplate;
 
 export const pageQuery = graphql`
@@ -233,6 +256,7 @@ export const pageQuery = graphql`
             sku
             dimensions
             materials
+            slug
             description {
                 childMarkdownRemark {
                     html
@@ -243,6 +267,12 @@ export const pageQuery = graphql`
                     ...GatsbyContentfulFluid
                 }
             }
+            thumbnail {
+                fluid(maxHeight: 800) {
+                    ...GatsbyContentfulFluid
+                }
+            }
+            shopifyLink
         }
     }
 `

@@ -13,6 +13,7 @@ exports.createPages = ({ graphql, actions }) => {
     return new Promise((resolve, reject) =>  {
         const productTemplate = path.resolve('./src/templates/product.js')
         const categoryTemplate = path.resolve('./src/templates/category.js')
+        const occasionTemplate = path.resolve('./src/templates/occasion.js')
         
         graphql(`
             {
@@ -47,6 +48,7 @@ exports.createPages = ({ graphql, actions }) => {
                         node {
                             id
                             title
+                            slug
                         }
                     }
                 }
@@ -57,7 +59,7 @@ exports.createPages = ({ graphql, actions }) => {
             }
             result.data.allContentfulCategory.edges.forEach((edge) => {
                 createPage ({
-                    path: `/categories/${edge.node.id}`,
+                    path: `/categories/${edge.node.slug}`,
                     component: categoryTemplate,
                     context: {
                         id: edge.node.id
@@ -65,6 +67,34 @@ exports.createPages = ({ graphql, actions }) => {
                 })
             })
         })
+
+        graphql(`
+            {
+                allContentfulOccasion {
+                    edges {
+                        node {
+                            id
+                            title
+                            slug
+                        }
+                    }
+                }
+            }
+        `).then((result) => {
+            if (result.errors) {
+                reject(result.errors)
+            }
+            result.data.allContentfulOccasion.edges.forEach((edge) => {
+                createPage ({
+                    path: `/occasions/${edge.node.slug}`,
+                    component: occasionTemplate,
+                    context: {
+                        id: edge.node.id
+                    }
+                })
+            })
+        })
+        
         resolve()
     })
 }

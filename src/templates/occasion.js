@@ -11,17 +11,9 @@ import Layout from '../components/layout'
 import Listing from '../components/listing'
 
 
-// export const pageQuery = graphql`
-//     query categoryQuery($id: String!) {
-//         contentfulCategory(id {eq: $id}) {
-//             title
-            
-//         }
-//     }
-// `
 const Container = styled.div `
     max-width: 1200px;
-    margin: 1.5em auto;
+    margin: 0 auto;
 `;
 
 const HeaderWrapper = styled.div`
@@ -142,7 +134,7 @@ const mapDispatchToProps = dispatch => {
 }
 
 
-class CategoryTemplate extends React.Component {
+class OccasionTemplate extends React.Component {
     constructor() {
         super();
     }
@@ -157,7 +149,7 @@ class CategoryTemplate extends React.Component {
     }
 
     render() {
-        const category = this.props.data.contentfulCategory;
+        const category = this.props.data.contentfulOccasion;
         const productEdges = this.props.data.allContentfulProduct.edges;
         console.log(productEdges);
         console.log(category.product);
@@ -192,12 +184,12 @@ class CategoryTemplate extends React.Component {
     }
 }
 
-const connectedCategoryTemplate = connect(null, mapDispatchToProps)(CategoryTemplate);
-export default connectedCategoryTemplate;
+const connectedOccasionTemplate = connect(null, mapDispatchToProps)(OccasionTemplate);
+export default connectedOccasionTemplate;
 
 export const pageQuery = graphql`
-    query CategoryQuery($id : String!) {
-        contentfulCategory(id: {eq: $id}) {
+    query OccasionQuery($id : String!) {
+        contentfulOccasion(id: {eq: $id}) {
             title   
             description {
                 description
@@ -215,7 +207,7 @@ export const pageQuery = graphql`
 
         }
         allContentfulProduct (
-            filter: {category: {id: {eq: $id}}}
+            filter: {occasion: {id: {eq: $id}}}
             sort: {fields: [title], order: ASC}
           ) {
             edges {
