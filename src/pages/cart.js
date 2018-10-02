@@ -289,13 +289,11 @@ class Cart extends React.Component {
                                     ))
                                 }
                             </List> 
-                            <Form>
+                            {/* <Form>
                                 <form name="enquiry" method="POST" data-netlify="true" onSubmit={this.handleSubmit} >
                                     <input type="hidden" name="form-name" value="enquiry"/>
-                                {/* <form onSubmit={this.handleSubmit}> */}
                                     <FormSection>
                                         <InputGroup>
-                                            {/* <input name="bot-field" type="hidden"/> */}
                                             <Label>Your Name</Label>
                                             <NameInput value={name} onChange={(e) => this.handleChange(e)}/>
                                             <Label>Email</Label>
@@ -312,10 +310,34 @@ class Cart extends React.Component {
                                         <SubmitButton>Submit</SubmitButton>
                                     </FormSection>
                                 </form>
-                            </Form>
+                            </Form> */}
                         </Content> :
                         <p>cart is empty</p>
                     }
+                    <Form>
+                        <form name="enquiry" method="POST" data-netlify="true" onSubmit={this.handleSubmit} >
+                            <input type="hidden" name="form-name" value="enquiry"/>
+                        {/* <form onSubmit={this.handleSubmit}> */}
+                            <FormSection>
+                                <InputGroup>
+                                    {/* <input name="bot-field" type="hidden"/> */}
+                                    <Label>Your Name</Label>
+                                    <NameInput value={name} onChange={(e) => this.handleChange(e)}/>
+                                    <Label>Email</Label>
+                                    <EmailInput value={email} onChange={(e) => this.handleChange(e)}/>
+                                    <Label>Company</Label>
+                                    <CompanyInput value={company} onChange={(e) => this.handleChange(e)}/>
+                                </InputGroup>
+                                <InputGroup>
+                                    <Label>Comments</Label>
+                                    <TextArea value={message} onInput={e => this.setState({message: e.target.value})}/>
+                                </InputGroup>
+                            </FormSection>
+                            <FormSection>
+                                <SubmitButton>Submit</SubmitButton>
+                            </FormSection>
+                        </form>
+                    </Form>
                 </Container>
             </Layout>
         )
