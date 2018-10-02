@@ -145,7 +145,7 @@ const EmailInput = styled.input.attrs({
 
 const CompanyInput = styled.input.attrs({
     type: "text",
-    name: "company"
+    name: "company",
 })`
     display: block;
     font-family: "Open Sans", "sans serif";
@@ -160,7 +160,7 @@ const CompanyInput = styled.input.attrs({
 `;
 
 const TextArea = styled.textarea.attrs({
-    name: "comments"
+    name: "comments",
 })`
     font-family: "Open Sans", "sans serif";
     color: #484848;
@@ -212,9 +212,21 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
+const encode = (data) => {
+    return Object.keys(data)
+        .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+        .join("&");
+  }
+
 class Cart extends React.Component {
     constructor() {
         super();
+        this.state = {
+            name: "",
+            email: "",
+            company: "",
+            message: ""
+        };
     }
 
     handleNavigate(link) {
@@ -226,8 +238,25 @@ class Cart extends React.Component {
         this.props.removeCart(index);
     }
 
+    handleChange(e) {
+        this.setState({[e.target.name]: e.target.value});
+    } 
+
+    handleSubmit = e => {
+        fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: encode({ "form-name": "contact", ...this.state })
+        })
+          .then(() => alert("Success!"))
+          .catch(error => alert(error));
+  
+        e.preventDefault();
+      };
+
     render() {
         const edges = this.props.cart;
+        const { name, email, company, message } = this.state;
         return (
             <Layout>
                 <Container>
@@ -262,21 +291,22 @@ class Cart extends React.Component {
                                 }
                             </List> 
                             <Form>
-                                <form name="enquiry" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
-                                    <input type="hidden" name="form-name" value="enquiry"/>
+                                {/* <form name="enquiry" method="POST" data-netlify="true"> */}
+                                    {/* <input type="hidden" name="form-name" value="enquiry"/> */}
+                                <form onSubmit={this.handleSubmit}>
                                     <FormSection>
                                         <InputGroup>
-                                            <input name="bot-field" type="hidden"/>
+                                            {/* <input name="bot-field" type="hidden"/> */}
                                             <Label>Your Name</Label>
-                                            <NameInput/>
+                                            <NameInput value={name} onChange={(e) => this.handleChange(e)}/>
                                             <Label>Email</Label>
-                                            <EmailInput/>
+                                            <EmailInput value={email} onChange={(e) => this.handleChange(e)}/>
                                             <Label>Company</Label>
-                                            <CompanyInput/>
+                                            <CompanyInput value={company} onChange={(e) => this.handleChange(e)}/>
                                         </InputGroup>
                                         <InputGroup>
                                             <Label>Comments</Label>
-                                            <TextArea/>
+                                            <TextArea value={message} onInput={e => this.setState({message: e.target.value})}/>
                                         </InputGroup>
                                     </FormSection>
                                     <FormSection>
