@@ -112,8 +112,7 @@ const Label = styled.label`
 `;
 
 const NameInput = styled.input.attrs({
-    type: "text",
-    name: "name"
+    type: "text"
 })`
     display: block;
     font-family: "Open Sans", "sans serif";
@@ -128,8 +127,7 @@ const NameInput = styled.input.attrs({
 `;
 
 const EmailInput = styled.input.attrs({
-    type: "email",
-    name: "email"
+    type: "email"
 })`
     display: block;
     font-family: "Open Sans", "sans serif";
@@ -144,8 +142,7 @@ const EmailInput = styled.input.attrs({
 `;
 
 const CompanyInput = styled.input.attrs({
-    type: "text",
-    name: "company",
+    type: "text"
 })`
     display: block;
     font-family: "Open Sans", "sans serif";
@@ -160,7 +157,6 @@ const CompanyInput = styled.input.attrs({
 `;
 
 const TextArea = styled.textarea.attrs({
-    name: "comments",
 })`
     font-family: "Open Sans", "sans serif";
     color: #484848;
@@ -180,7 +176,6 @@ const TextArea = styled.textarea.attrs({
 `;
 
 const SubmitButton = styled.button.attrs({
-    type: "submit"
 })`
     font-family: "Montserrat", "sans serif";
     font-size: 13px;    
@@ -238,9 +233,9 @@ class Cart extends React.Component {
         this.props.removeCart(index);
     }
 
-    handleChange(e) {
-        this.setState({[e.target.name]: e.target.value});
-    } 
+    handleChange = e => {
+        this.setState({ [e.target.name]: e.target.value });
+      };
 
     handleSubmit = e => {
         e.preventDefault();
@@ -318,7 +313,6 @@ class Cart extends React.Component {
                     <Form>
                         <form name="enquiry" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={this.handleSubmit}>
                             <input type="hidden" name="form-name" value="enquiry"/>
-
                             <p hidden>
                                 <label>
                                     Don’t fill this out:{" "}
@@ -330,19 +324,19 @@ class Cart extends React.Component {
                                 <InputGroup>
                                     {/* <input name="bot-field" type="hidden"/> */}
                                     <Label>Your Name</Label>
-                                    <NameInput value={name} onChange={(e) => this.handleChange(e)}/>
+                                    <NameInput value={name} name="name" onChange={this.handleChange}/>
                                     <Label>Email</Label>
-                                    <EmailInput value={email} onChange={(e) => this.handleChange(e)}/>
+                                    <EmailInput value={email} name="email" onChange={this.handleChange}/>
                                     <Label>Company</Label>
-                                    <CompanyInput value={company} onChange={(e) => this.handleChange(e)}/>
+                                    <CompanyInput value={company} name="company" onChange={this.handleChange}/>
                                 </InputGroup>
                                 <InputGroup>
                                     <Label>Comments</Label>
-                                    <TextArea value={message} onInput={e => this.setState({message: e.target.value})}/>
+                                    <TextArea value={message} name="message" onChange={this.handleChange}/>
                                 </InputGroup>
                             </FormSection>
                             <FormSection>
-                                <SubmitButton>Submit</SubmitButton>
+                                <SubmitButton type="submit">Submit</SubmitButton>
                             </FormSection>
                         </form>
                     </Form>
