@@ -243,6 +243,7 @@ class Cart extends React.Component {
     } 
 
     handleSubmit = e => {
+        e.preventDefault();
         fetch("/", {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -250,8 +251,6 @@ class Cart extends React.Component {
         })
           .then(() => alert("Success!"))
           .catch(error => alert(error));
-  
-        e.preventDefault();
       };
 
     render() {
@@ -291,7 +290,7 @@ class Cart extends React.Component {
                                 }
                             </List> 
                             <Form>
-                                <form onSubmit={this.handleSubmit} name="enquiry" method="POST" data-netlify="true">
+                                <form name="enquiry" method="POST" data-netlify="true" onSubmit={this.handleSubmit} >
                                     <input type="hidden" name="form-name" value="enquiry"/>
                                 {/* <form onSubmit={this.handleSubmit}> */}
                                     <FormSection>
