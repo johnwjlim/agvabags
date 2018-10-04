@@ -221,7 +221,7 @@ class Cart extends React.Component {
             name: "",
             email: "",
             company: "",
-            message: ""
+            message: "",
         };
     }
 
@@ -315,8 +315,13 @@ class Cart extends React.Component {
                         <p>cart is empty</p>
                     }
                     <Form>
+<<<<<<< HEAD
                         <form name="contact" method="post" netlify="true" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={this.handleSubmit}>
                             <input type="hidden" name="form-name" value="contact"/>
+=======
+                        <form name="enquiry" method="post" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={this.handleSubmit}>
+                            <input type="hidden" name="form-name" value="enquiry"/>
+>>>>>>> 4389131f1125cf6a3a5a20beb61a63b6abd01de3
                             <p hidden>
                                 <label>
                                     Don’t fill this out:{" "}
@@ -328,11 +333,14 @@ class Cart extends React.Component {
                                 <InputGroup>
                                     {/* <input name="bot-field" type="hidden"/> */}
                                     <Label>Your Name</Label>
-                                    <NameInput value={name} name="name" onChange={this.handleChange}/>
+                                    {/* <NameInput value={name} name="name" onChange={this.handleChange}/> */}
+                                    <input type="text" name="name" className="input" onChange={this.handleChange}/>
                                     <Label>Email</Label>
-                                    <EmailInput value={email} name="email" onChange={this.handleChange}/>
+                                    {/* <EmailInput value={email} name="email" onChange={this.handleChange}/> */}
+                                    <input type="email" name="email" className="input" onChange={this.handleChange}/>
                                     <Label>Company</Label>
-                                    <CompanyInput value={company} name="company" onChange={this.handleChange}/>
+                                    {/* <CompanyInput value={company} name="company" onChange={this.handleChange}/> */}
+                                    <input type="text" name="company" className="input" onChange={this.handleChange}/>
                                 </InputGroup>
                                 <InputGroup>
                                     <Label>Comments</Label>
