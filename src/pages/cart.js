@@ -226,7 +226,6 @@ class Cart extends React.Component {
     }
 
     handleNavigate(link) {
-        console.log("link clicked!");
         navigate(link);
     }
 
@@ -315,13 +314,8 @@ class Cart extends React.Component {
                         <p>cart is empty</p>
                     }
                     <Form>
-<<<<<<< HEAD
-                        <form name="contact" method="post" netlify="true" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={this.handleSubmit}>
-                            <input type="hidden" name="form-name" value="contact"/>
-=======
                         <form name="enquiry" method="post" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={this.handleSubmit}>
                             <input type="hidden" name="form-name" value="enquiry"/>
->>>>>>> 4389131f1125cf6a3a5a20beb61a63b6abd01de3
                             <p hidden>
                                 <label>
                                     Don’t fill this out:{" "}
