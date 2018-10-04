@@ -5,7 +5,9 @@ import { connect } from 'react-redux'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 
+
 import Layout from '../components/layout'
+import FormComponent from '../components/form'
 
 
 const Container = styled.div`
@@ -313,39 +315,7 @@ class Cart extends React.Component {
                         </Content> :
                         <p>cart is empty</p>
                     }
-                    <Form>
-                        <form name="contact" method="post" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={this.handleSubmit}>
-                            {/* <input type="hidden" name="form-name" value="enquiry"/> */}
-                            <p hidden>
-                                <label>
-                                    Don’t fill this out:{" "}
-                                    <input name="bot-field" onChange={this.handleChange} />
-                                </label>
-                            </p>
-                            {/* <form onSubmit={this.handleSubmit}> */}
-                            <FormSection>
-                                <InputGroup>
-                                    {/* <input name="bot-field" type="hidden"/> */}
-                                    <Label>Your Name</Label>
-                                    {/* <NameInput value={name} name="name" onChange={this.handleChange}/> */}
-                                    <input type="text" name="name" className="input" onChange={this.handleChange}/>
-                                    <Label>Email</Label>
-                                    {/* <EmailInput value={email} name="email" onChange={this.handleChange}/> */}
-                                    <input type="email" name="email" className="input" onChange={this.handleChange}/>
-                                    <Label>Company</Label>
-                                    {/* <CompanyInput value={company} name="company" onChange={this.handleChange}/> */}
-                                    <input type="text" name="company" className="input" onChange={this.handleChange}/>
-                                </InputGroup>
-                                <InputGroup>
-                                    <Label>Comments</Label>
-                                    <TextArea value={message} name="message" onChange={this.handleChange}/>
-                                </InputGroup>
-                            </FormSection>
-                            <FormSection>
-                                <SubmitButton type="submit">Submit</SubmitButton>
-                            </FormSection>
-                        </form>
-                    </Form>
+                    <FormComponent />
                 </Container>
             </Layout>
         )
