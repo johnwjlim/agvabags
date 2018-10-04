@@ -7,6 +7,7 @@ import Img from 'gatsby-image'
 
 import Layout from '../components/layout'
 
+
 const Container = styled.div`
     max-width: 1200px;
     margin: 0 auto;
@@ -207,10 +208,10 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-function encode(data) {
+const encode = (data) => {
     return Object.keys(data)
-      .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-      .join("&");
+        .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+        .join("&");
   }
 
 class Cart extends React.Component {
@@ -241,10 +242,13 @@ class Cart extends React.Component {
         e.preventDefault();
         const form = e.target;
         fetch("/", {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: encode({ "form-name": "enquiry", ...this.state })
-        })
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: encode({
+              "form-name": "contact",
+              ...this.state
+            })
+          })
           .then(() => alert("Success!"))
           .catch(error => alert(error));
       };
@@ -311,8 +315,8 @@ class Cart extends React.Component {
                         <p>cart is empty</p>
                     }
                     <Form>
-                        <form name="enquiry" method="post" netlify="true" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={this.handleSubmit}>
-                            <input type="hidden" name="form-name" value="enquiry"/>
+                        <form name="contact" method="post" netlify="true" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={this.handleSubmit}>
+                            <input type="hidden" name="form-name" value="contact"/>
                             <p hidden>
                                 <label>
                                     Don’t fill this out:{" "}
