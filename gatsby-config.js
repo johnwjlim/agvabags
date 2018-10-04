@@ -35,5 +35,14 @@ module.exports = {
     'gatsby-transformer-remark',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
+    // {
+    //   resolve: `gatsby-plugin-google-fonts`,
+    //   options: {
+    //     fonts: [
+    //       `Montserrat\:300,400,500,600,700`,
+    //       `Open Sans\:300,400,600`
+    //     ]
+    //   }
+    // }
   ],
 }
