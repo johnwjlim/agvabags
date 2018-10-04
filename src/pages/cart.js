@@ -207,10 +207,10 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-function encode(data) {
+const encode = (data) => {
     return Object.keys(data)
-      .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-      .join("&");
+        .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+        .join("&");
   }
 
 class Cart extends React.Component {
@@ -220,7 +220,7 @@ class Cart extends React.Component {
             name: "",
             email: "",
             company: "",
-            message: ""
+            message: "",
         };
     }
 
@@ -245,7 +245,10 @@ class Cart extends React.Component {
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
           body: encode({ "form-name": "enquiry", ...this.state })
         })
-          .then(() => alert("Success!"))
+          .then(() => {
+              alert("Success!")
+              console.log(this.state)
+            })
           .catch(error => alert(error));
       };
 
@@ -311,7 +314,7 @@ class Cart extends React.Component {
                         <p>cart is empty</p>
                     }
                     <Form>
-                        <form name="enquiry" method="post" netlify="true" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={this.handleSubmit}>
+                        <form name="enquiry" method="post" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={this.handleSubmit}>
                             <input type="hidden" name="form-name" value="enquiry"/>
                             <p hidden>
                                 <label>
@@ -324,11 +327,14 @@ class Cart extends React.Component {
                                 <InputGroup>
                                     {/* <input name="bot-field" type="hidden"/> */}
                                     <Label>Your Name</Label>
-                                    <NameInput value={name} name="name" onChange={this.handleChange}/>
+                                    {/* <NameInput value={name} name="name" onChange={this.handleChange}/> */}
+                                    <input type="text" name="name" className="input" onChange={this.handleChange}/>
                                     <Label>Email</Label>
-                                    <EmailInput value={email} name="email" onChange={this.handleChange}/>
+                                    {/* <EmailInput value={email} name="email" onChange={this.handleChange}/> */}
+                                    <input type="email" name="email" className="input" onChange={this.handleChange}/>
                                     <Label>Company</Label>
-                                    <CompanyInput value={company} name="company" onChange={this.handleChange}/>
+                                    {/* <CompanyInput value={company} name="company" onChange={this.handleChange}/> */}
+                                    <input type="text" name="company" className="input" onChange={this.handleChange}/>
                                 </InputGroup>
                                 <InputGroup>
                                     <Label>Comments</Label>
