@@ -102,3 +102,15 @@ li {
     text-rendering: optimizeLegibility;
 }
 
+.input {
+    display: block;
+    font-family: "Open Sans", "sans serif";
+    color: #484848;
+    font-size: 14px;
+    margin: 0.35em 0;
+    padding: 0.5em;
+    border: 0.5px solid #dddddd;
+    border-radius: 4px;
+    width: 230px;
+    margin-bottom: 1.2em;
+}
