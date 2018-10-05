@@ -233,7 +233,7 @@ class Cart extends React.Component {
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: encode({
               "form-name": "contact",
-              ...this.state, cart: JSON.stringify(cartItems)
+              ...this.state, cart: "test"
             })
           })
           .then(() => this.handleSuccess())
