@@ -247,12 +247,17 @@ class Cart extends React.Component {
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: encode({
               "form-name": "contact",
-              ...this.state
+              ...this.state,
+              ...this.props.cart
             })
           })
           .then(() => alert("Success!"))
           .catch(error => alert(error));
-      };
+    };
+
+    handleSuccess() {
+        this.props.resetCart();
+    }
 
     render() {
         const edges = this.props.cart;
@@ -290,47 +295,19 @@ class Cart extends React.Component {
                                     ))
                                 }
                             </List> 
-                            {/* <Form>
-                                <form name="enquiry" method="POST" data-netlify="true" onSubmit={this.handleSubmit} >
-                                    <input type="hidden" name="form-name" value="enquiry"/>
-                                    <FormSection>
-                                        <InputGroup>
-                                            <Label>Your Name</Label>
-                                            <NameInput value={name} onChange={(e) => this.handleChange(e)}/>
-                                            <Label>Email</Label>
-                                            <EmailInput value={email} onChange={(e) => this.handleChange(e)}/>
-                                            <Label>Company</Label>
-                                            <CompanyInput value={company} onChange={(e) => this.handleChange(e)}/>
-                                        </InputGroup>
-                                        <InputGroup>
-                                            <Label>Comments</Label>
-                                            <TextArea value={message} onInput={e => this.setState({message: e.target.value})}/>
-                                        </InputGroup>
-                                    </FormSection>
-                                    <FormSection>
-                                        <SubmitButton>Submit</SubmitButton>
-                                    </FormSection>
-                                </form>
-                            </Form> */}
                         </Content> :
                         <p>cart is empty</p>
                     }
                     <Form>
                         <form name="contact" method="post" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={this.handleSubmit}>
-                            {/* <input type="hidden" name="form-name" value="enquiry"/> */}
                             <input type="hidden" name="bot-field"/>
-                            {/* <form onSubmit={this.handleSubmit}> */}
                             <FormSection>
                                 <InputGroup>
-                                    {/* <input name="bot-field" type="hidden"/> */}
                                     <Label>Your Name</Label>
-                                    {/* <NameInput value={name} name="name" onChange={this.handleChange}/> */}
                                     <input type="text" name="name" className="input" onChange={this.handleChange}/>
                                     <Label>Email</Label>
-                                    {/* <EmailInput value={email} name="email" onChange={this.handleChange}/> */}
                                     <input type="email" name="email" className="input" onChange={this.handleChange}/>
                                     <Label>Company</Label>
-                                    {/* <CompanyInput value={company} name="company" onChange={this.handleChange}/> */}
                                     <input type="text" name="company" className="input" onChange={this.handleChange}/>
                                 </InputGroup>
                                 <InputGroup>
