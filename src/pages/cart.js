@@ -242,7 +242,7 @@ class Cart extends React.Component {
     handleSubmit = e => {
         e.preventDefault();
         const form = e.target;
-        fetch("/", {
+        fetch("/contact?no-cache=1", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: encode({
@@ -318,12 +318,7 @@ class Cart extends React.Component {
                     <Form>
                         <form name="contact" method="post" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={this.handleSubmit}>
                             {/* <input type="hidden" name="form-name" value="enquiry"/> */}
-                            <p hidden>
-                                <label>
-                                    Don’t fill this out:{" "}
-                                    <input name="bot-field" onChange={this.handleChange} />
-                                </label>
-                            </p>
+                            <input type="hidden" name="bot-field"/>
                             {/* <form onSubmit={this.handleSubmit}> */}
                             <FormSection>
                                 <InputGroup>
