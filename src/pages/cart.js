@@ -5,7 +5,10 @@ import { connect } from 'react-redux'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 
+
 import Layout from '../components/layout'
+import FormComponent from '../components/form'
+
 
 const Container = styled.div`
     max-width: 1200px;
@@ -225,7 +228,6 @@ class Cart extends React.Component {
     }
 
     handleNavigate(link) {
-        console.log("link clicked!");
         navigate(link);
     }
 
@@ -240,17 +242,23 @@ class Cart extends React.Component {
     handleSubmit = e => {
         e.preventDefault();
         const form = e.target;
-        fetch("/", {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: encode({ "form-name": "enquiry", ...this.state })
-        })
-          .then(() => {
-              alert("Success!")
-              console.log(this.state)
+        fetch("/contact?no-cache=1", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: encode({
+              "form-name": "contact",
+              ...this.state,
+              ...this.props.cart
             })
+          })
+          .then(() => this.handleSuccess())
           .catch(error => alert(error));
-      };
+    };
+
+    handleSuccess() {
+        this.props.resetCart();
+        alert("Success!");
+    }
 
     render() {
         const edges = this.props.cart;
@@ -288,52 +296,19 @@ class Cart extends React.Component {
                                     ))
                                 }
                             </List> 
-                            {/* <Form>
-                                <form name="enquiry" method="POST" data-netlify="true" onSubmit={this.handleSubmit} >
-                                    <input type="hidden" name="form-name" value="enquiry"/>
-                                    <FormSection>
-                                        <InputGroup>
-                                            <Label>Your Name</Label>
-                                            <NameInput value={name} onChange={(e) => this.handleChange(e)}/>
-                                            <Label>Email</Label>
-                                            <EmailInput value={email} onChange={(e) => this.handleChange(e)}/>
-                                            <Label>Company</Label>
-                                            <CompanyInput value={company} onChange={(e) => this.handleChange(e)}/>
-                                        </InputGroup>
-                                        <InputGroup>
-                                            <Label>Comments</Label>
-                                            <TextArea value={message} onInput={e => this.setState({message: e.target.value})}/>
-                                        </InputGroup>
-                                    </FormSection>
-                                    <FormSection>
-                                        <SubmitButton>Submit</SubmitButton>
-                                    </FormSection>
-                                </form>
-                            </Form> */}
                         </Content> :
                         <p>cart is empty</p>
                     }
                     <Form>
-                        <form name="enquiry" method="post" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={this.handleSubmit}>
-                            <input type="hidden" name="form-name" value="enquiry"/>
-                            <p hidden>
-                                <label>
-                                    Don’t fill this out:{" "}
-                                    <input name="bot-field" onChange={this.handleChange} />
-                                </label>
-                            </p>
-                            {/* <form onSubmit={this.handleSubmit}> */}
+                        <form name="contact" method="post" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={this.handleSubmit}>
+                            <input type="hidden" name="bot-field"/>
                             <FormSection>
                                 <InputGroup>
-                                    {/* <input name="bot-field" type="hidden"/> */}
                                     <Label>Your Name</Label>
-                                    {/* <NameInput value={name} name="name" onChange={this.handleChange}/> */}
                                     <input type="text" name="name" className="input" onChange={this.handleChange}/>
                                     <Label>Email</Label>
-                                    {/* <EmailInput value={email} name="email" onChange={this.handleChange}/> */}
                                     <input type="email" name="email" className="input" onChange={this.handleChange}/>
                                     <Label>Company</Label>
-                                    {/* <CompanyInput value={company} name="company" onChange={this.handleChange}/> */}
                                     <input type="text" name="company" className="input" onChange={this.handleChange}/>
                                 </InputGroup>
                                 <InputGroup>
