@@ -250,7 +250,7 @@ class Cart extends React.Component {
               ...this.state
             })
           })
-          .then(() => alert("Success!"))
+        //   .then(() => alert("Success!"))
           .catch(error => alert(error));
       };
 
