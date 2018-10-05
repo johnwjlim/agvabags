@@ -195,15 +195,15 @@ class Cart extends React.Component {
         this.setState({ [e.target.name]: e.target.value });
       };
 
-    handleSubmit = (e, edges) => {
+    handleSubmit = e => {
         e.preventDefault();
+        const cartItems = this.props.cart;
         fetch("/contact?no-cache=1", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: encode({
               "form-name": "contact",
-              ...this.state,
-              edges
+              ...this.state, cartItems
             })
           })
           .then(() => this.handleSuccess())
@@ -255,7 +255,7 @@ class Cart extends React.Component {
                         <p>cart is empty</p>
                     }
                     <Form>
-                        <form name="contact" method="post" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={this.handleSubmit(e, edges)}>
+                        <form name="contact" method="post" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={this.handleSubmit}>
                             <input type="hidden" name="bot-field"/>
                             <FormSection>
                                 <InputGroup>
