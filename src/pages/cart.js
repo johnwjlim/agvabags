@@ -255,7 +255,7 @@ class Cart extends React.Component {
                         <p>cart is empty</p>
                     }
                     <Form>
-                        <form name="contact" method="post" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={this.handleSubmit(edges)}>
+                        <form name="contact" method="post" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={this.handleSubmit(e, edges)}>
                             <input type="hidden" name="bot-field"/>
                             <FormSection>
                                 <InputGroup>
