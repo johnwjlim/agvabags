@@ -183,6 +183,17 @@ class Cart extends React.Component {
         };
     }
 
+    componentDidMount() {
+        const edges = this.props.cart;
+        let cartItems = {};
+        edges.map((node) => {
+            cartItems = {...cartItems, item: node.sku}
+        });
+        const cartString = JSON.stringify(cartItems);
+        console.log(cartString);
+        console.log(this.state);
+    }
+
     handleNavigate(link) {
         navigate(link);
     }
@@ -197,13 +208,32 @@ class Cart extends React.Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        const cartItems = this.props.cart;
+        // const edges = this.props.cart;
+        // let cartItems = {};
+        // console.log(edges);
+        // edges.map((node) => {
+        //     cartItems = {...cartItems, item: node.sku}
+        // });
+        // const cartString = JSON.stringify(cartItems);
+        // console.log(cartString);
+        // this.setState({cart: cartString});
+        // console.log(this.state);
+        let cartItems = [];
+        this.props.cart.map((node) => {
+            console.log(node.sku);
+            cartItems.push(node.sku);
+        });
+        console.log(cartItems);
+        console.log(encode({
+            "form-name": "contact",
+            ...this.state, cart: JSON.stringify(cartItems)
+          }));
         fetch("/contact?no-cache=1", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: encode({
               "form-name": "contact",
-              ...this.state, cartItems
+              ...this.state, cart: JSON.stringify(cartItems)
             })
           })
           .then(() => this.handleSuccess())
