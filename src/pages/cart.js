@@ -114,50 +114,6 @@ const Label = styled.label`
     width: 50%;
 `;
 
-const NameInput = styled.input.attrs({
-    type: "text"
-})`
-    display: block;
-    font-family: "Open Sans", "sans serif";
-    color: #484848;
-    font-size: 14px;
-    margin: 0.35em 0;
-    padding: 0.5em;
-    border: 0.5px solid #dddddd;
-    border-radius: 4px;
-    width: 230px;
-    margin-bottom: 1.2em;
-`;
-
-const EmailInput = styled.input.attrs({
-    type: "email"
-})`
-    display: block;
-    font-family: "Open Sans", "sans serif";
-    color: #484848;
-    font-size: 14px;
-    margin: 0.35em 0;
-    padding: 0.5em;
-    border: 0.5px solid #dddddd;
-    border-radius: 4px;
-    width: 230px;
-    margin-bottom: 1.2em;
-`;
-
-const CompanyInput = styled.input.attrs({
-    type: "text"
-})`
-    display: block;
-    font-family: "Open Sans", "sans serif";
-    color: #484848;
-    font-size: 14px;
-    margin: 0.35em 0;
-    padding: 0.5em;
-    border: 0.5px solid #dddddd;
-    border-radius: 4px;
-    width: 230px;
-    margin-bottom: 1.2em;
-`;
 
 const TextArea = styled.textarea.attrs({
 })`
@@ -239,16 +195,15 @@ class Cart extends React.Component {
         this.setState({ [e.target.name]: e.target.value });
       };
 
-    handleSubmit = e => {
+    handleSubmit = (e, edges) => {
         e.preventDefault();
-        const form = e.target;
         fetch("/contact?no-cache=1", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: encode({
               "form-name": "contact",
               ...this.state,
-              ...this.props.cart
+              edges
             })
           })
           .then(() => this.handleSuccess())
@@ -300,7 +255,7 @@ class Cart extends React.Component {
                         <p>cart is empty</p>
                     }
                     <Form>
-                        <form name="contact" method="post" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={this.handleSubmit}>
+                        <form name="contact" method="post" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={this.handleSubmit(edges)}>
                             <input type="hidden" name="bot-field"/>
                             <FormSection>
                                 <InputGroup>
