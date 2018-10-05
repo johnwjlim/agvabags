@@ -251,11 +251,12 @@ class Cart extends React.Component {
               ...this.props.cart
             })
           })
-          .then(() => alert("Success!"))
+          .then(() => this.handleSuccess())
           .catch(error => alert(error));
     };
 
-    handleSuccess() {
+    handleSuccess() {;
+        alert("Success!")
         this.props.resetCart();
     }
 
