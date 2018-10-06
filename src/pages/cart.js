@@ -7,7 +7,6 @@ import Img from 'gatsby-image'
 
 
 import Layout from '../components/layout'
-import FormComponent from '../components/form'
 
 
 const Container = styled.div`
@@ -183,17 +182,6 @@ class Cart extends React.Component {
         };
     }
 
-    componentDidMount() {
-        const edges = this.props.cart;
-        let cartItems = {};
-        edges.map((node) => {
-            cartItems = {...cartItems, item: node.sku}
-        });
-        const cartString = JSON.stringify(cartItems);
-        console.log(cartString);
-        console.log(this.state);
-    }
-
     handleNavigate(link) {
         navigate(link);
     }
@@ -208,26 +196,10 @@ class Cart extends React.Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        // const edges = this.props.cart;
-        // let cartItems = {};
-        // console.log(edges);
-        // edges.map((node) => {
-        //     cartItems = {...cartItems, item: node.sku}
-        // });
-        // const cartString = JSON.stringify(cartItems);
-        // console.log(cartString);
-        // this.setState({cart: cartString});
-        // console.log(this.state);
         let cartItems = [];
         this.props.cart.map((node) => {
-            console.log(node.sku);
             cartItems.push(node.sku);
         });
-        console.log(cartItems);
-        console.log(encode({
-            "form-name": "contact",
-            ...this.state, cart: JSON.stringify(cartItems)
-          }));
         fetch("/contact?no-cache=1", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -287,7 +259,6 @@ class Cart extends React.Component {
                     <Form>
                         <form name="contact" method="post" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={this.handleSubmit}>
                             <input type="hidden" name="bot-field"/>
-                            <input type="hidden" name="cart"/>
                             <FormSection>
                                 <InputGroup>
                                     <Label>Your Name</Label>
@@ -300,6 +271,7 @@ class Cart extends React.Component {
                                 <InputGroup>
                                     <Label>Comments</Label>
                                     <TextArea value={message} name="message" onChange={this.handleChange}/>
+                                    <input type="hidden" name="cart"/>
                                 </InputGroup>
                             </FormSection>
                             <FormSection>
