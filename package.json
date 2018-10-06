@@ -23,7 +23,7 @@
     "gatsby-transformer-sharp": "^2.1.1-rc.3",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "react-headroom": "^2.2.2",
+    "react-headroom": "^2.2.4",
     "react-helmet": "^5.2.0",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",

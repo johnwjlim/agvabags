@@ -1,8 +1,7 @@
 import React from 'react'
-import { Link, push, navigate } from 'gatsby'
+import { navigate } from 'gatsby'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 
 
@@ -215,6 +214,8 @@ class Cart extends React.Component {
     handleSuccess() {
         this.props.resetCart();
         alert("Success!");
+        navigate("/");
+        
     }
 
     render() {
