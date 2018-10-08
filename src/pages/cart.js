@@ -152,6 +152,12 @@ const SubmitButton = styled.button.attrs({
     }
 `;
 
+const ErrorText = styled.p`
+    color: red;
+    font-size: 10;
+    margin: 0;
+`;
+
 
 const mapStateToProps = state => {
     return {cart: state.cart}
@@ -178,6 +184,9 @@ class Cart extends React.Component {
             email: "",
             company: "",
             message: "",
+            nameBlank: false,
+            emailBlank: false,
+            checkForm: false,
         };
     }
 
@@ -195,6 +204,7 @@ class Cart extends React.Component {
 
     handleSubmit = e => {
         e.preventDefault();
+        // this.checkForm();
         let cartItems = [];
         this.props.cart.map((node) => {
             cartItems.push(node.sku);
@@ -203,13 +213,14 @@ class Cart extends React.Component {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: encode({
-              "form-name": "contact",
-              ...this.state, cart: JSON.stringify(cartItems)
+            "form-name": "contact",
+            ...this.state, cart: JSON.stringify(cartItems)
             })
-          })
-          .then(() => this.handleSuccess())
-          .catch(error => alert(error));
+        })
+        .then(() => this.handleSuccess())
+        .catch(error => alert(error));
     };
+
 
     handleSuccess() {
         this.props.resetCart();
@@ -263,11 +274,21 @@ class Cart extends React.Component {
                             <FormSection>
                                 <InputGroup>
                                     <Label>Your Name</Label>
-                                    <input type="text" name="name" className="input" onChange={this.handleChange}/>
+                                    <input type="text" name="name" className="input" onChange={this.handleChange} required/>
+                                    {
+                                        this.state.nameBlank ?
+                                        <ErrorText>name cannot be empty</ErrorText> :
+                                        undefined
+                                    }
                                     <Label>Email</Label>
-                                    <input type="email" name="email" className="input" onChange={this.handleChange}/>
+                                    <input type="email" name="email" className="input" onChange={this.handleChange} required/>
+                                    {
+                                        this.state.emailBlank ?
+                                        <ErrorText>email cannot be empty</ErrorText> :
+                                        undefined
+                                    }
                                     <Label>Company</Label>
-                                    <input type="text" name="company" className="input" onChange={this.handleChange}/>
+                                    <input type="text" name="company" className="input" onChange={this.handleChange} required/>
                                 </InputGroup>
                                 <InputGroup>
                                     <Label>Comments</Label>

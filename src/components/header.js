@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, graphql, push } from 'gatsby'
+import { Link, graphql, navigate } from 'gatsby'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 
@@ -174,7 +174,7 @@ class Header extends React.Component {
 
   handleClick() {
     this.props.close();
-    push('/');
+    navigate('/');
   }
 
   render() {
