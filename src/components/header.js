@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 
 import logo from "../images/agva-logo.svg"
+import catalog from "../images/catalog.pdf"
 
 import Headroom from "react-headroom"
 
@@ -63,6 +64,15 @@ const Container = styled.div`
   // padding: 1.5em 0;
   // color: #484848;
   // color: #4f4f4f;
+  color: #767676;
+
+  &:hover {
+    text-decoration: underline;
+  }
+ `;
+
+ const StyledA = styled.a`
+  text-decoration: none;
   color: #767676;
 
   &:hover {
@@ -231,7 +241,8 @@ class Header extends React.Component {
             </LinkWrapper>
             <LinkWrapper>
               <LinkText>
-                <StyledLink to="/page-2">Catalog</StyledLink>
+                {/* <StyledLink to="/page-2">Catalog</StyledLink> */}
+                <StyledA href={catalog}>Catalog</StyledA>
               </LinkText>
               <LinkText> 
                 <StyledLink to="/cart">Enquiry: {this.props.cart.length}</StyledLink>
