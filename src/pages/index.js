@@ -129,7 +129,7 @@ class IndexPage extends React.Component {
           <Button onClick={() => this.handlePushToProducts()}>EXPLORE OUR BAGS</Button>
         </Hero>
         <Categories backpacks={this.props.data.backpacks} laptopCases={this.props.data.laptopCases} accessories={this.props.data.accessories}/>
-        <Img style={{maxHeight: "780px"}}fluid={this.props.data.tailor.childImageSharp.fluid}/>
+        <Img style={{maxHeight: "720px"}}fluid={this.props.data.tailor.childImageSharp.fluid}/>
         <About/>
         {/* <HeroText>Hello world</HeroText>
         <HeroSubtext>Lets go do something crazy</HeroSubtext>

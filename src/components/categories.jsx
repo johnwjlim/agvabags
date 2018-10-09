@@ -27,15 +27,14 @@ const Text = styled.p`
 `;
 
 const Grid = styled.div`
-    display: flex;
-    justify-content: center;
-    margin: 2em 0;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 10px;
 `;
 
 const ImageWrapper = styled.div`
-    min-width: 300px;
     margin: 2em;
+
 `;
 
 export default class Categories extends React.Component {
@@ -59,7 +58,7 @@ export default class Categories extends React.Component {
                         </Link>
                         <Link to="/categories/carry-cases">
                             <ImageWrapper>
-                                <Img fluid={this.props.laptopCases.childImageSharp.fluid}/>
+                                <Img  fluid={this.props.laptopCases.childImageSharp.fluid}/>
                             </ImageWrapper>
                         </Link>
                         <Link to="/categories/accessories">
