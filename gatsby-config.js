@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: 'agvabags corporate',
+    title: 'AGVA Bags | Corporate',
   },
   plugins: [
     'gatsby-plugin-react-helmet',

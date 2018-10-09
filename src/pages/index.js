@@ -128,8 +128,8 @@ class IndexPage extends React.Component {
           <HeroSubtitle>Tailored solutions for your corporate needs</HeroSubtitle>
           <Button onClick={() => this.handlePushToProducts()}>EXPLORE OUR BAGS</Button>
         </Hero>
-        <Categories/>
-        <Img fluid={this.props.data.tailor.childImageSharp.fluid}/>
+        <Categories backpacks={this.props.data.backpacks} laptopCases={this.props.data.laptopCases} accessories={this.props.data.accessories}/>
+        <Img style={{maxHeight: "780px"}}fluid={this.props.data.tailor.childImageSharp.fluid}/>
         <About/>
         {/* <HeroText>Hello world</HeroText>
         <HeroSubtext>Lets go do something crazy</HeroSubtext>
@@ -155,6 +155,27 @@ export const query = graphql`
     hero:file(relativePath: {eq:"images/hero-small.jpg"}) {
       childImageSharp {
         fluid(maxHeight: 800) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    backpacks:file(relativePath: {eq:"images/backpacks_thumb.png"}) {
+      childImageSharp {
+        fluid(maxWidth: 720) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    laptopCases:file(relativePath: {eq:"images/laptop_cases_thumb.png"}) {
+      childImageSharp {
+        fluid(maxWidth: 720) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    accessories:file(relativePath: {eq:"images/accessories_thumb.png"}) {
+      childImageSharp {
+        fluid(maxWidth: 720) {
           ...GatsbyImageSharpFluid
         }
       }
