@@ -14,12 +14,13 @@ const Container = styled.div`
 `;
 
 const Content = styled.div`
+    margin: 0 2em;
 `;
 
 const Title = styled.h1`
     text-align: center;
     font-family: "Montserrat Medium";
-    font-size: 36px;
+    // font-size: 1.6rem;
     margin-bottom: 1em;
 `;
 
@@ -33,7 +34,7 @@ class AboutPage extends React.Component {
         return (
             <Layout>
                 <Container>
-                    <Title>ABOUT US</Title>
+                    <Title>About Us</Title>
                     <Content dangerouslySetInnerHTML={{__html: page.content.childMarkdownRemark.html}} />
                 </Container>
             </Layout>
