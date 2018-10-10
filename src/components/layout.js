@@ -64,8 +64,8 @@ const Layout = ({ children, data, menuState }) => (
         <Helmet
           title={data.site.siteMetadata.title}
           meta={[
-            { name: 'description', content: 'Sample' },
-            { name: 'keywords', content: 'sample, something' },
+            { name: 'description', content: 'This is the corporate website for AGVA Bags. Let us help you fulfill your corporate needs!' },
+            { name: 'keywords', content: 'AGVA, Corporate, agvabags, backpacks, consumer, electronics, lifestyle, OEM, ODM, orders' },
           ]}
         >
           <html lang="en" />

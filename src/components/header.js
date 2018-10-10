@@ -233,10 +233,10 @@ class Header extends React.Component {
                 <StyledLink to="/page-2">Portfolio</StyledLink>
               </LinkText> */}
               <LinkText>
-                <StyledLink to="/page-2">About</StyledLink>
+                <StyledLink to="/about">About</StyledLink>
               </LinkText>
               <LinkText>
-                <StyledLink to="/page-2">FAQ</StyledLink>
+                <StyledLink to="/faq">FAQ</StyledLink>
               </LinkText>
             </LinkWrapper>
             <LinkWrapper>
