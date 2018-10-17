@@ -7,6 +7,7 @@ import HeroImg from '../images/hero-small.jpg'
 import Layout from '../components/layout'
 import Categories from '../components/categories'
 import About from "../components/aboutSection"
+import PortfolioThumbs from "../components/portfolioThumbs"
 
 const BgImage = styled(Img)`
   top: 0;
@@ -129,7 +130,8 @@ class IndexPage extends React.Component {
           <Button onClick={() => this.handlePushToProducts()}>EXPLORE OUR BAGS</Button>
         </Hero>
         <Categories backpacks={this.props.data.backpacks} laptopCases={this.props.data.laptopCases} accessories={this.props.data.accessories}/>
-        <Img style={{maxHeight: "720px"}}fluid={this.props.data.tailor.childImageSharp.fluid}/>
+        <PortfolioThumbs asean={this.props.data.asean} volvo={this.props.data.volvo} keppel={this.props.data.keppel} />
+        <Img style={{maxHeight: "720px"}} fluid={this.props.data.tailor.childImageSharp.fluid}/>
         <About/>
         {/* <HeroText>Hello world</HeroText>
         <HeroSubtext>Lets go do something crazy</HeroSubtext>
@@ -176,6 +178,27 @@ export const query = graphql`
     accessories:file(relativePath: {eq:"images/accessories_thumb.png"}) {
       childImageSharp {
         fluid(maxWidth: 720) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    keppel:file(relativePath: {eq:"images/keppel.png"}) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    volvo:file(relativePath: {eq:"images/volvo.png"}) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    asean:file(relativePath: {eq:"images/asean.png"}) {
+      childImageSharp {
+        fluid {
           ...GatsbyImageSharpFluid
         }
       }
