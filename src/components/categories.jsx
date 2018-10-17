@@ -5,10 +5,9 @@ import { connect } from 'react-redux'
 import Img from 'gatsby-image'
 
 const Container = styled.div`
-    padding: 2.5em 1em;
-    // max-width: 1200px;
+    padding: 4.5em 1em;
     text-align: center;
-    margin: 2em;
+    background-color: #f7f7f7;
 `;
 
 

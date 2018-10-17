@@ -14,6 +14,7 @@ exports.createPages = ({ graphql, actions }) => {
         const productTemplate = path.resolve('./src/templates/product.js')
         const categoryTemplate = path.resolve('./src/templates/category.js')
         const occasionTemplate = path.resolve('./src/templates/occasion.js')
+        const postTemplate = path.resolve('./src/templates/post.js')
         
         graphql(`
             {
@@ -90,6 +91,33 @@ exports.createPages = ({ graphql, actions }) => {
                     component: occasionTemplate,
                     context: {
                         id: edge.node.id
+                    }
+                })
+            })
+        })
+
+        graphql(`
+            {
+                allContentfulPortfolio {
+                    edges {
+                        node {
+                            id
+                            title
+                            slug
+                        }
+                    }
+                }
+            }
+        `).then((result) => {
+            if (result.errors) {
+                reject(result.errors)
+            }
+            result.data.allContentfulPortfolio.edges.forEach((edge) => {
+                createPage({
+                    path: `/portfolio/${edge.node.slug}`,
+                    component: postTemplate,
+                    context: {
+                        slug: edge.node.slug
                     }
                 })
             })

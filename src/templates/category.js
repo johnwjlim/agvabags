@@ -10,15 +10,6 @@ import Img from 'gatsby-image'
 import Layout from '../components/layout'
 import Listing from '../components/listing'
 
-
-// export const pageQuery = graphql`
-//     query categoryQuery($id: String!) {
-//         contentfulCategory(id {eq: $id}) {
-//             title
-            
-//         }
-//     }
-// `
 const Container = styled.div `
     max-width: 1200px;
     margin: 1.5em auto;
@@ -29,7 +20,7 @@ const HeaderWrapper = styled.div`
     padding-left: 2em;
     // border-bottom: solid 1px #dddddd;
     // text-align: center
-`
+`;
 
 const HeaderText = styled.h1`
     font-family: "Montserrat Medium";
@@ -38,14 +29,14 @@ const HeaderText = styled.h1`
     // text-align: center;
     padding-bottom: 0em;
     // border-bottom: solid 1px #dddddd;
-`
+`;
 
 const HeaderSubText = styled.h5`
    font-family: "Montserrat Light";
    font-size: 0.9rem;
    color: #767676;
    margin: 0.5em auto;
-`
+`;
 
 const GridWrapper = styled.div`
     // max-width: 1200px;
