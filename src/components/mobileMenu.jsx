@@ -4,6 +4,8 @@ import { push } from 'gatsby'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 
+import catalog from "../images/catalog.pdf"
+
 const MenuItem = styled.li`
     list-style-type: none; 
     border-bottom: 1px solid #ddd;
@@ -26,6 +28,10 @@ const StyledLink = styled(Link)`
     // }
 `;
 
+const StyledA = styled.a`
+    text-decoration: none;
+    color: #484848;
+`
 const CategoryList = styled.ul`
     margin: 0;
     margin-left: 2.5em;
@@ -63,7 +69,7 @@ class mobileMenu extends React.Component {
                         <CategoryList>
                             {categoryEdges.map(({node}) => (
                                 <CategoryItem>
-                                    <StyledLink style={{fontSize: "12px"}} to={`categories/${node.slug}`} 
+                                    <StyledLink style={{fontSize: "12px"}} to={`/categories/${node.slug}`} 
                                     onClick={() => this.props.toggle()}>
                                         {node.title}
                                     </StyledLink>
@@ -76,7 +82,7 @@ class mobileMenu extends React.Component {
                         <CategoryList>
                             {occasionEdges.map(({node}) => (
                                 <CategoryItem>
-                                    <StyledLink style={{fontSize: "12px"}} to={`occasion/${node.slug}`} 
+                                    <StyledLink style={{fontSize: "12px"}} to={`/occasions/${node.slug}`} 
                                     onClick={() => this.props.toggle()}>
                                         {node.title}
                                     </StyledLink>
@@ -85,19 +91,19 @@ class mobileMenu extends React.Component {
                         </CategoryList>
                     </MenuItem>
                     <MenuItem onClick={() => this.props.toggle()}>
-                        <StyledLink to = "/page-2"> 
+                        <StyledLink to = "/about"> 
                             <p>About</p>
                         </StyledLink>
                     </MenuItem>
                     <MenuItem onClick={() => this.props.toggle()}>
-                        <StyledLink to = "/page-2"> 
+                        <StyledLink to = "/faq"> 
                             <p>FAQ</p>
                         </StyledLink>
                     </MenuItem>
                     <MenuItem onClick={() => this.props.toggle()}>
-                        <StyledLink to = "/page-2"> 
+                        <StyledA href={catalog} > 
                             <p>Catalog</p>
-                        </StyledLink>
+                        </StyledA>
                     </MenuItem>
                 </List>
             </nav>
