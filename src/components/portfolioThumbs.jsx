@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
+import { Link } from 'gatsby'
 
 const Container = styled.div`
   padding: 4.5em 1em;
@@ -10,18 +11,23 @@ const Container = styled.div`
 const Title = styled.h5`
   font-family: "Montserrat Bold";
   margin: 1.5em 0;
-  // margin-top: 2em;
-
 `;
 
 const Grid = styled.div`
   display: flex;
+  @media (max-width: 768px) {
+    display: block;
+  }
 `;
 
 
 const ImageWrapper = styled.div`
   padding: 3em;
   flex: 1;
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
 `;
 
 
@@ -36,13 +42,19 @@ class PortfolioThumbs extends React.Component {
         <Title>VIEW OUR PAST WORK</Title>
         <Grid>
           <ImageWrapper>
-            <Img fluid={this.props.asean.childImageSharp.fluid} />
+            <StyledLink to="/portfolio/asean">
+              <Img fluid={this.props.asean.childImageSharp.fluid} />
+            </StyledLink>
           </ImageWrapper>
           <ImageWrapper>
-            <Img fluid={this.props.volvo.childImageSharp.fluid} />
+            <StyledLink to="/portfolio/volvo">
+              <Img fluid={this.props.volvo.childImageSharp.fluid} />
+            </StyledLink>
           </ImageWrapper>
           <ImageWrapper>
-            <Img fluid={this.props.keppel.childImageSharp.fluid} />
+            <StyledLink to="/portfolio/keppel-land">
+              <Img fluid={this.props.keppel.childImageSharp.fluid} />
+            </StyledLink>
           </ImageWrapper>
         </Grid>
       </Container>
